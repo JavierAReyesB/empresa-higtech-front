@@ -189,3 +189,49 @@ git add .
 git commit -m "Descripción breve del cambio"
 git push origin feature/nueva-funcionalidad
 Crear un Pull Request (PR) en GitHub para revisión y fusión en main.
+
+## Dependencias
+
+{
+"name": "empresa-higtech-front",
+"version": "0.1.0",
+"private": true,
+"scripts": {
+"dev": "next dev",
+"build": "next build",
+"start": "next start",
+"lint": "next lint"
+},
+"dependencies": {
+"@radix-ui/react-avatar": "^1.1.3",
+"@radix-ui/react-dialog": "^1.1.6",
+"@radix-ui/react-dropdown-menu": "^2.1.6",
+"@radix-ui/react-label": "^2.1.2",
+"@radix-ui/react-separator": "^1.1.2",
+"@radix-ui/react-slot": "^1.1.2",
+"@radix-ui/react-switch": "^1.1.3",
+"@radix-ui/react-tabs": "^1.1.3",
+"class-variance-authority": "^0.7.1",
+"clsx": "^2.1.1",
+"framer-motion": "^12.4.7",
+"lucide-react": "^0.476.0",
+"next": "^15.3.0",
+"next-themes": "^0.4.6",
+"react": "^18.3.1",
+"react-dom": "^18.3.1",
+"tailwind-merge": "^3.0.2",
+"tailwindcss-animate": "^1.0.7"
+},
+"devDependencies": {
+"@eslint/eslintrc": "^3",
+"@types/node": "^20",
+"@types/react": "^19",
+"@types/react-dom": "^19",
+"autoprefixer": "^10.4.20",
+"eslint": "^9",
+"eslint-config-next": "15.2.0",
+"postcss": "^8.5.3",
+"tailwindcss": "^3.3.3",
+"typescript": "^5"
+}
+}

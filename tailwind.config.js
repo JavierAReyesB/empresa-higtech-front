@@ -26,7 +26,7 @@ module.exports = {
 
     extend: {
       animationDelay: {
-        1000: "1s",
+        10000000: "1s",
       },
       fontFamily: {
         dancing: ["var(--font-dancing)"],

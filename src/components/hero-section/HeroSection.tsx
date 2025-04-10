@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Pacifico } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
+import { useState, useEffect } from "react";
 
 const pacifico = Pacifico({
   subsets: ["latin"],
@@ -48,6 +49,40 @@ function ElegantShape({
   );
 }
 
+// Componente para animación de escritura
+const TypewriterText = ({ text }: { text: string }) => {
+  const [displayText, setDisplayText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [startTyping, setStartTyping] = useState(false);
+  
+  // Pequeño retraso antes de empezar a escribir para asegurar que comienza desde cero
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setStartTyping(true);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
+  
+  useEffect(() => {
+    if (!startTyping) return;
+    
+    if (currentIndex < text.length) {
+      const timeout = setTimeout(() => {
+        setDisplayText((prev) => prev + text[currentIndex]);
+        setCurrentIndex((prev) => prev + 1);
+      }, 150); // velocidad de escritura - ajustar según necesidad
+      
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, text, startTyping]);
+
+  return (
+    <span className="text-lg sm:text-xl md:text-7xl text-sm text-foreground/60 tracking-wide font-dancing whitespace-nowrap border-r-2 border-foreground animate-caret">
+      {displayText}
+    </span>
+  );
+};
+
 export default function HeroSection({
   badge = "Omar Somoza",
   title1 = "Soluciones",
@@ -58,6 +93,16 @@ export default function HeroSection({
   title2?: string;
 }) {
   const { theme } = useTheme();
+  const [showBadge, setShowBadge] = useState(false);
+
+  // Esperar a que todas las animaciones terminen y luego mostrar el badge
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowBadge(true);
+    }, 4000); // 4 segundos total para esperar todas las animaciones (incluyendo loader)
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const fadeUpVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -66,7 +111,7 @@ export default function HeroSection({
       y: 0,
       transition: {
         duration: 1,
-        delay: 0.5 + i * 0.2,
+        delay: 1.5 + i * 0.2,
         ease: [0.25, 0.4, 0.25, 1],
       },
     }),
@@ -118,18 +163,17 @@ export default function HeroSection({
       </div>
       <div className="relative z-10 container mx-auto px-4 md:px-6">
         <div className="max-w-3xl mx-auto text-center">
-          <motion.div
-            custom={0}
-            variants={fadeUpVariants}
-            initial="hidden"
-            animate="visible"
-            className="inline-flex items-center gap-2 px-3 py-1  mb-8 md:mb-12"
-          >
-            <span className="text-lg sm:text-xl md:text-7xl text-sm text-foreground/60 tracking-wide font-dancing overflow-hidden whitespace-nowrap border-r-2 border-foreground animate-typing animate-caret">
-              {badge}
-            </span>
-          </motion.div>
-          <motion.div custom={1} initial="hidden" animate="visible">
+          {showBadge && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.1, ease: "easeOut" }}
+              className="inline-flex items-center gap-2 px-3 py-1 mb-8 md:mb-12"
+            >
+              <TypewriterText text={badge} />
+            </motion.div>
+          )}
+          <motion.div custom={0} initial="hidden" animate="visible">
             <h1 className="text-xl sm:text-xl md:text-8xl font-bold mb-6 md:mb-8 tracking-tight">
               <div className="geo-text-gradient">{title1}</div>
               <div className="geo-text-gradient text-lg sm:text-xl md:text-5xl">
@@ -138,7 +182,7 @@ export default function HeroSection({
             </h1>
           </motion.div>
           <motion.div
-            custom={2}
+            custom={1}
             variants={fadeUpVariants}
             initial="hidden"
             animate="visible"
@@ -149,7 +193,7 @@ export default function HeroSection({
           </motion.div>
 
           <motion.div
-            custom={3}
+            custom={2}
             variants={fadeUpVariants}
             initial="hidden"
             animate="visible"
