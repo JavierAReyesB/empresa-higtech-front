@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTheme } from 'next-themes'
@@ -23,12 +23,16 @@ import { Badge } from '@/components/ui/badge'
 import { motion } from 'framer-motion'
 
 export default function Header() {
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const pathname = usePathname()
+  const [mounted, setMounted] = useState(false)
+
+  // After mounting, we have access to the theme
+  useEffect(() => setMounted(true), [])
 
   const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light')
+    setTheme(resolvedTheme === 'light' ? 'dark' : 'light')
   }
 
   // ✅ Enlaces corregidos
@@ -40,6 +44,33 @@ export default function Header() {
   ]
 
   const cartItemCount = 3
+
+  // Don't render theme-specific parts until mounted (client-side)
+  if (!mounted) {
+    return (
+      <header className='w-full border-b border-white/10 bg-transparent backdrop-blur-sm z-10'>
+        <div className='container mx-auto px-4'>
+          <div className='flex h-16 items-center justify-between'>
+            {/* Simplified loading state */}
+            <div className='h-10 w-32'></div>
+            <nav className='hidden lg:flex items-center space-x-4'>
+              {navItems.map((item) => (
+                <div key={item.name} className='h-10 w-24'></div>
+              ))}
+            </nav>
+            <div className='flex items-center space-x-2'>
+              <div className='h-10 w-10'></div>
+              <div className='h-10 w-10'></div>
+              <div className='h-10 w-10'></div>
+              <div className='h-10 w-10'></div>
+              <div className='hidden sm:block h-10 w-32'></div>
+              <div className='lg:hidden h-10 w-10'></div>
+            </div>
+          </div>
+        </div>
+      </header>
+    )
+  }
 
   return (
     <header className='w-full border-b border-white/10 bg-transparent backdrop-blur-sm z-10'>
@@ -113,7 +144,7 @@ export default function Header() {
               onClick={toggleTheme}
               className='border border-white/20 rounded-full geo-card'
             >
-              {theme === 'light' ? (
+              {resolvedTheme === 'light' ? (
                 <Moon className='h-5 w-5 stroke-foreground' />
               ) : (
                 <Sun className='h-5 w-5 stroke-foreground' />
