@@ -4,6 +4,51 @@
 
 @layer base {
   :root {
+    --background: 0 0% 1%;
+    --foreground: 210 20% 98%;
+
+    --card: 0 0% 3%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 0 0% 3%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 234 89% 74%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 20% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 224 76.3% 48%;
+
+    --radius: 1rem;
+
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+
+    /* Geometric theme gradients */
+    --gradient-indigo: 234 89% 74%;
+    --gradient-rose: 346 77% 49%;
+    --gradient-violet: 262 83% 58%;
+    --gradient-amber: 43 96% 56%;
+    --gradient-cyan: 196 94% 66%;
+  }
+
+  .light {
     --background: 0 0% 100%;
     --foreground: 224 71.4% 4.1%;
 
@@ -13,7 +58,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 224 71.4% 4.1%;
 
-    --primary: 220.9 39.3% 11%;
+    --primary: 234 89% 54%;
     --primary-foreground: 210 20% 98%;
 
     --secondary: 220 14.3% 95.9%;
@@ -30,54 +75,20 @@
 
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 224 71.4% 4.1%;
+    --ring: 224 76.3% 48%;
 
-    --radius: 0.5rem;
-
-    --chart-1: 12 76% 61%;
-
-    --chart-2: 173 58% 39%;
-
-    --chart-3: 197 37% 24%;
-
-    --chart-4: 43 74% 66%;
-
-    --chart-5: 27 87% 67%;
-  }
-
-  .dark {
-    --background: 224 71.4% 4.1%;
-    --foreground: 210 20% 98%;
-
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 210 20% 98%;
-
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 20% 98%;
-
-    --primary: 210 20% 98%;
-    --primary-foreground: 220.9 39.3% 11%;
-
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 20% 98%;
-
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
-
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 20% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
-
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 216 12.2% 83.9%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
+    /* Geometric theme gradients - lighter for light mode */
+    --gradient-indigo: 234 89% 74%;
+    --gradient-rose: 346 77% 79%;
+    --gradient-violet: 262 83% 78%;
+    --gradient-amber: 43 96% 76%;
+    --gradient-cyan: 196 94% 76%;
   }
 }
 
@@ -85,18 +96,37 @@
   * {
     @apply border-border;
   }
+  html {
+    @apply scroll-smooth;
+  }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden overflow-y-auto;
   }
 }
 
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
+/* Global Geometric Styles */
+@layer components {
+  .elegant-shape {
+    @apply absolute rounded-full backdrop-blur-[2px] border-2 border-white/[0.15] shadow-[0_8px_32px_0_rgba(255,255,255,0.1)];
+    @apply after:absolute after:inset-0 after:rounded-full after:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_70%)];
   }
-  body {
-    @apply bg-background text-foreground;
+  
+  .geo-bg {
+    @apply bg-[#030303] relative overflow-hidden;
+    @apply before:absolute before:inset-0 before:bg-gradient-to-br before:from-indigo-500/[0.05] before:via-transparent before:to-rose-500/[0.05] before:blur-3xl;
+  }
+  
+  .geo-text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-white/90 to-rose-300;
+  }
+  
+  .geo-card {
+    @apply relative rounded-xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm;
+    @apply hover:border-white/[0.15] transition-all duration-300;
+    @apply before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-br before:from-indigo-500/[0.03] before:to-transparent before:opacity-0 before:transition-opacity;
+    @apply hover:before:opacity-100;
   }
 }

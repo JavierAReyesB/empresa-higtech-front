@@ -97,9 +97,9 @@ export default function HeroSection({
     }),
   }
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#030303]">
+    <div className="relative h-[100vh] max-h-[800px] w-full flex items-center justify-center bg-[#030303]">
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.05] via-transparent to-rose-500/[0.05] blur-3xl" />
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0">
         <ElegantShape
           delay={0.3}
           width={600}
@@ -170,6 +170,29 @@ export default function HeroSection({
             <p className="text-base sm:text-lg md:text-xl text-white/40 mb-8 leading-relaxed font-light tracking-wide max-w-xl mx-auto px-4">
               Soluciones tecnológicas innovadoras para empresas y profesionales que buscan transformar digitalmente sus negocios.
             </p>
+          </motion.div>
+          
+          <motion.div 
+            custom={3} 
+            variants={fadeUpVariants} 
+            initial="hidden" 
+            animate="visible"
+            className="mt-8"
+          >
+            <a 
+              href="#about" 
+              className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-white/10 backdrop-blur-sm hover:border-white/30 transition-all"
+            >
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="h-6 w-6 text-white animate-bounce" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </a>
           </motion.div>
         </div>
       </div>

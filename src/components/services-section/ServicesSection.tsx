@@ -1,91 +1,130 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import { Monitor, Smartphone, LightbulbIcon } from 'lucide-react'
+
 export default function ServicesSection() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: [0.25, 0.4, 0.25, 1]
+      }
+    }
+  }
+
   return (
-    <section className='py-20 px-8 bg-white text-center'>
+    <section id="servicios" className='py-24 px-8 backdrop-blur-sm mx-4 my-8 border border-white/10 rounded-xl geo-card'>
       <div className='max-w-6xl mx-auto'>
-        <h2 className='text-4xl font-bold mb-10 text-gray-900'>
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className='text-4xl md:text-5xl font-bold mb-12 text-center geo-text-gradient'
+        >
           Nuestros Servicios
-        </h2>
-        <div className='grid md:grid-cols-3 gap-8'>
+        </motion.h2>
+        
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className='grid md:grid-cols-3 gap-8'
+        >
           {/* Servicio 1 */}
-          <div className='p-8 bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300'>
-            <div className='mb-4 inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-50 border border-gray-100'>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='h-8 w-8 text-gray-700'
-                fill='none'
-                viewBox='0 0 24 24'
-                stroke='currentColor'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth={1.5}
-                  d='M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
-                />
-              </svg>
+          <motion.div 
+            variants={itemVariants}
+            className='p-8 backdrop-blur-sm rounded-xl border border-white/10 geo-card hover:border-white/20 transition-all duration-300'
+            whileHover={{ y: -5, transition: { duration: 0.2 } }}
+          >
+            <div className='mb-6 inline-flex items-center justify-center w-16 h-16 rounded-full bg-indigo-500/10 border border-indigo-500/20'>
+              <Monitor className='h-8 w-8 text-indigo-400' />
             </div>
-            <h3 className='text-2xl font-semibold mb-3 text-gray-800'>
+            <h3 className='text-2xl font-semibold mb-4 text-white'>
               Desarrollo Web
             </h3>
-            <p className='text-gray-600'>
+            <p className='text-white/70'>
               Creamos sitios web modernos y responsivos utilizando las últimas
-              tecnologías.
+              tecnologías. Diseños únicos que capturan la esencia de tu marca.
             </p>
-          </div>
+            <motion.a 
+              href="#" 
+              className='inline-block mt-6 text-indigo-400 hover:text-indigo-300 font-medium'
+              whileHover={{ x: 5 }}
+              transition={{ duration: 0.2 }}
+            >
+              Conocer más →
+            </motion.a>
+          </motion.div>
 
           {/* Servicio 2 */}
-          <div className='p-8 bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300'>
-            <div className='mb-4 inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-50 border border-gray-100'>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='h-8 w-8 text-gray-700'
-                fill='none'
-                viewBox='0 0 24 24'
-                stroke='currentColor'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth={1.5}
-                  d='M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z'
-                />
-              </svg>
+          <motion.div 
+            variants={itemVariants}
+            className='p-8 backdrop-blur-sm rounded-xl border border-white/10 geo-card hover:border-white/20 transition-all duration-300'
+            whileHover={{ y: -5, transition: { duration: 0.2 } }}
+          >
+            <div className='mb-6 inline-flex items-center justify-center w-16 h-16 rounded-full bg-rose-500/10 border border-rose-500/20'>
+              <Smartphone className='h-8 w-8 text-rose-400' />
             </div>
-            <h3 className='text-2xl font-semibold mb-3 text-gray-800'>
+            <h3 className='text-2xl font-semibold mb-4 text-white'>
               Aplicaciones Móviles
             </h3>
-            <p className='text-gray-600'>
+            <p className='text-white/70'>
               Diseñamos y desarrollamos apps para iOS y Android con alto
-              rendimiento.
+              rendimiento. Experiencias móviles fluidas y atractivas.
             </p>
-          </div>
+            <motion.a 
+              href="#" 
+              className='inline-block mt-6 text-rose-400 hover:text-rose-300 font-medium'
+              whileHover={{ x: 5 }}
+              transition={{ duration: 0.2 }}
+            >
+              Conocer más →
+            </motion.a>
+          </motion.div>
 
           {/* Servicio 3 */}
-          <div className='p-8 bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300'>
-            <div className='mb-4 inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-50 border border-gray-100'>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='h-8 w-8 text-gray-700'
-                fill='none'
-                viewBox='0 0 24 24'
-                stroke='currentColor'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth={1.5}
-                  d='M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z'
-                />
-              </svg>
+          <motion.div 
+            variants={itemVariants}
+            className='p-8 backdrop-blur-sm rounded-xl border border-white/10 geo-card hover:border-white/20 transition-all duration-300'
+            whileHover={{ y: -5, transition: { duration: 0.2 } }}
+          >
+            <div className='mb-6 inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-500/10 border border-amber-500/20'>
+              <LightbulbIcon className='h-8 w-8 text-amber-400' />
             </div>
-            <h3 className='text-2xl font-semibold mb-3 text-gray-800'>
+            <h3 className='text-2xl font-semibold mb-4 text-white'>
               Consultoría Tecnológica
             </h3>
-            <p className='text-gray-600'>
+            <p className='text-white/70'>
               Ofrecemos asesoría para optimizar procesos y digitalizar empresas.
+              Transforma tu negocio con soluciones personalizadas.
             </p>
-          </div>
-        </div>
+            <motion.a 
+              href="#" 
+              className='inline-block mt-6 text-amber-400 hover:text-amber-300 font-medium'
+              whileHover={{ x: 5 }}
+              transition={{ duration: 0.2 }}
+            >
+              Conocer más →
+            </motion.a>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   )
