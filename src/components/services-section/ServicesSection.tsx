@@ -1,9 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useTheme } from 'next-themes'
 import { Monitor, Smartphone, LightbulbIcon } from 'lucide-react'
 
 export default function ServicesSection() {
+  const { theme } = useTheme()
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -56,10 +59,10 @@ export default function ServicesSection() {
             <div className='mb-6 inline-flex items-center justify-center w-16 h-16 rounded-full bg-indigo-500/10 border border-indigo-500/20'>
               <Monitor className='h-8 w-8 text-indigo-400' />
             </div>
-            <h3 className='text-2xl font-semibold mb-4 text-white'>
+            <h3 className='text-2xl font-semibold mb-4 text-foreground'>
               Desarrollo Web
             </h3>
-            <p className='text-white/70'>
+            <p className='text-foreground/70'>
               Creamos sitios web modernos y responsivos utilizando las últimas
               tecnologías. Diseños únicos que capturan la esencia de tu marca.
             </p>
@@ -82,10 +85,10 @@ export default function ServicesSection() {
             <div className='mb-6 inline-flex items-center justify-center w-16 h-16 rounded-full bg-rose-500/10 border border-rose-500/20'>
               <Smartphone className='h-8 w-8 text-rose-400' />
             </div>
-            <h3 className='text-2xl font-semibold mb-4 text-white'>
+            <h3 className='text-2xl font-semibold mb-4 text-foreground'>
               Aplicaciones Móviles
             </h3>
-            <p className='text-white/70'>
+            <p className='text-foreground/70'>
               Diseñamos y desarrollamos apps para iOS y Android con alto
               rendimiento. Experiencias móviles fluidas y atractivas.
             </p>
@@ -108,10 +111,10 @@ export default function ServicesSection() {
             <div className='mb-6 inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-500/10 border border-amber-500/20'>
               <LightbulbIcon className='h-8 w-8 text-amber-400' />
             </div>
-            <h3 className='text-2xl font-semibold mb-4 text-white'>
+            <h3 className='text-2xl font-semibold mb-4 text-foreground'>
               Consultoría Tecnológica
             </h3>
-            <p className='text-white/70'>
+            <p className='text-foreground/70'>
               Ofrecemos asesoría para optimizar procesos y digitalizar empresas.
               Transforma tu negocio con soluciones personalizadas.
             </p>

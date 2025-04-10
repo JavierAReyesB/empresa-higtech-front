@@ -87,7 +87,7 @@ export default function ClientLayout({
           width={600}
           height={140}
           rotate={12}
-          gradient="from-indigo-500/[0.05]"
+          gradient="dark:from-indigo-500/[0.05] light:from-[#e5c38c]/[0.15]"
           className="left-[-10%] md:left-[-5%] top-[15%] md:top-[20%]"
         />
         <ElegantShape
@@ -95,7 +95,7 @@ export default function ClientLayout({
           width={500}
           height={120}
           rotate={-15}
-          gradient="from-rose-500/[0.05]"
+          gradient="dark:from-rose-500/[0.05] light:from-[#efdcb9]/[0.15]"
           className="right-[-5%] md:right-[0%] top-[70%] md:top-[75%]"
         />
         <ElegantShape
@@ -103,7 +103,7 @@ export default function ClientLayout({
           width={300}
           height={80}
           rotate={-8}
-          gradient="from-violet-500/[0.05]"
+          gradient="dark:from-violet-500/[0.05] light:from-[#e5c38c]/[0.10]"
           className="left-[5%] md:left-[10%] bottom-[5%] md:bottom-[10%]"
         />
         <ElegantShape
@@ -111,7 +111,7 @@ export default function ClientLayout({
           width={200}
           height={60}
           rotate={20}
-          gradient="from-amber-500/[0.05]"
+          gradient="dark:from-amber-500/[0.05] light:from-[#824a2a]/[0.08]"
           className="right-[15%] md:right-[20%] top-[10%] md:top-[15%]"
         />
         <ElegantShape
@@ -119,7 +119,7 @@ export default function ClientLayout({
           width={150}
           height={40}
           rotate={-25}
-          gradient="from-cyan-500/[0.05]"
+          gradient="dark:from-cyan-500/[0.05] light:from-[#693e25]/[0.1]"
           className="left-[20%] md:left-[25%] top-[5%] md:top-[10%]"
         />
       </div>
@@ -143,7 +143,7 @@ export default function ClientLayout({
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-              className="w-16 h-16 border-4 border-indigo-500 border-t-transparent rounded-full"
+              className="w-16 h-16 border-4 dark:border-indigo-500 light:border-[#e5c38c] border-t-transparent rounded-full"
             />
           </motion.div>
         )}

@@ -49,46 +49,60 @@
   }
 
   .light {
-    --background: 0 0% 100%;
-    --foreground: 224 71.4% 4.1%;
+    /* Main background - #faf4e8 */
+    --background: 39 56% 94%;
+    /* Primary text - #381e12 */
+    --foreground: 20 53% 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 224 71.4% 4.1%;
+    /* Second background - #f8efdd */
+    --card: 39 67% 92%;
+    --card-foreground: 20 53% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 71.4% 4.1%;
+    /* Second background - #f8efdd */
+    --popover: 39 67% 92%;
+    --popover-foreground: 20 53% 15%;
 
-    --primary: 234 89% 54%;
-    --primary-foreground: 210 20% 98%;
+    /* Highlight element - #e5c38c */
+    --primary: 36 62% 72%;
+    --primary-foreground: 20 53% 15%;
 
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 220.9 39.3% 11%;
+    /* Second highlight - #efdcb9 */
+    --secondary: 38 67% 83%;
+    /* Secondary text - #693e25 */
+    --secondary-foreground: 24 49% 28%;
 
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 220 8.9% 46.1%;
+    /* Second highlight - #efdcb9 */
+    --muted: 38 67% 83%;
+    /* Secondary text - #693e25 */
+    --muted-foreground: 24 49% 28%;
 
-    --accent: 220 14.3% 95.9%;
-    --accent-foreground: 220.9 39.3% 11%;
+    /* Second highlight - #efdcb9 */
+    --accent: 38 67% 83%;
+    /* Secondary text - #693e25 */
+    --accent-foreground: 24 49% 28%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 20% 98%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 224 76.3% 48%;
+    /* Second highlight - #efdcb9 */
+    --border: 38 67% 83%;
+    /* Highlight element - #e5c38c */
+    --input: 36 62% 72%;
+    /* Secondary text/button - #824a2a */
+    --ring: 25 51% 34%;
 
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --chart-1: 36 62% 72%;
+    --chart-2: 24 49% 28%;
+    --chart-3: 38 67% 83%;
+    --chart-4: 25 51% 34%;
+    --chart-5: 20 53% 15%;
 
-    /* Geometric theme gradients - lighter for light mode */
-    --gradient-indigo: 234 89% 74%;
-    --gradient-rose: 346 77% 79%;
-    --gradient-violet: 262 83% 78%;
-    --gradient-amber: 43 96% 76%;
-    --gradient-cyan: 196 94% 76%;
+    /* Geometric theme gradients - warm light mode */
+    --gradient-indigo: 36 62% 72%;
+    --gradient-rose: 38 67% 83%;
+    --gradient-violet: 24 49% 28%;
+    --gradient-amber: 25 51% 34%;
+    --gradient-cyan: 20 53% 15%;
   }
 }
 
@@ -119,8 +133,17 @@
     @apply before:absolute before:inset-0 before:bg-gradient-to-br before:from-indigo-500/[0.05] before:via-transparent before:to-rose-500/[0.05] before:blur-3xl;
   }
   
+  .light .geo-bg {
+    @apply bg-[#faf4e8];
+    @apply before:from-[#e5c38c]/[0.15] before:via-transparent before:to-[#efdcb9]/[0.15];
+  }
+  
   .geo-text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-white/90 to-rose-300;
+  }
+  
+  .light .geo-text-gradient {
+    @apply from-[#693e25] via-[#381e12] to-[#824a2a];
   }
   
   .geo-card {
@@ -128,5 +151,11 @@
     @apply hover:border-white/[0.15] transition-all duration-300;
     @apply before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-br before:from-indigo-500/[0.03] before:to-transparent before:opacity-0 before:transition-opacity;
     @apply hover:before:opacity-100;
+  }
+  
+  .light .geo-card {
+    @apply border-[#efdcb9]/[0.4] bg-[#f8efdd]/[0.5];
+    @apply hover:border-[#e5c38c]/[0.6];
+    @apply before:from-[#e5c38c]/[0.1] before:to-transparent;
   }
 }

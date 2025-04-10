@@ -1,8 +1,11 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useTheme } from 'next-themes'
 
 export default function AboutSection() {
+  const { theme } = useTheme()
+  
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: (i: number) => ({
@@ -38,16 +41,16 @@ export default function AboutSection() {
         className='flex flex-col md:flex-row gap-8 max-w-5xl'
       >
         <div className='flex-1 backdrop-blur-sm rounded-lg p-6 border border-white/10 geo-card hover:border-white/20 transition-all'>
-          <h3 className='text-2xl font-semibold mb-3 text-white'>Nuestra Misión</h3>
-          <p className='text-lg text-white/70'>
+          <h3 className='text-2xl font-semibold mb-3 text-foreground'>Nuestra Misión</h3>
+          <p className='text-lg text-foreground/70'>
             Transformar ideas en soluciones tecnológicas que impulsen el éxito de nuestros clientes, 
             ofreciendo herramientas digitales innovadoras y eficientes.
           </p>
         </div>
         
         <div className='flex-1 backdrop-blur-sm rounded-lg p-6 border border-white/10 geo-card hover:border-white/20 transition-all'>
-          <h3 className='text-2xl font-semibold mb-3 text-white'>Nuestra Visión</h3>
-          <p className='text-lg text-white/70'>
+          <h3 className='text-2xl font-semibold mb-3 text-foreground'>Nuestra Visión</h3>
+          <p className='text-lg text-foreground/70'>
             Ser referentes en la industria tecnológica, reconocidos por nuestra excelencia, 
             creatividad y capacidad para adelantarnos a las necesidades digitales del futuro.
           </p>
@@ -60,7 +63,7 @@ export default function AboutSection() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className='text-xl max-w-4xl mt-8 text-white/80'
+        className='text-xl max-w-4xl mt-8 text-foreground/80'
       >
         Somos una empresa innovadora que ofrece soluciones tecnológicas de alta
         calidad. Nos enfocamos en mejorar la productividad y eficiencia de

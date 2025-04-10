@@ -1,9 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useTheme } from 'next-themes'
 import { Star } from 'lucide-react'
 
 export default function TestimonialsSection() {
+  const { theme } = useTheme()
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -81,7 +84,7 @@ export default function TestimonialsSection() {
               ))}
             </div>
             
-            <p className='text-white/80 italic mb-6 text-lg'>
+            <p className='text-foreground/80 italic mb-6 text-lg'>
               &quot;{testimonial.text}&quot;
             </p>
             
@@ -90,10 +93,10 @@ export default function TestimonialsSection() {
                 {testimonial.author.charAt(0)}
               </div>
               <div className="ml-4">
-                <h3 className='text-xl font-semibold text-white'>
+                <h3 className='text-xl font-semibold text-foreground'>
                   {testimonial.author}
                 </h3>
-                <p className="text-white/60 text-sm">{testimonial.company}</p>
+                <p className="text-foreground/60 text-sm">{testimonial.company}</p>
               </div>
             </div>
           </motion.div>
@@ -109,7 +112,7 @@ export default function TestimonialsSection() {
       >
         <a 
           href="#" 
-          className="inline-flex items-center justify-center px-8 py-3 rounded-full text-white bg-gradient-to-r from-indigo-500 to-violet-500 hover:from-indigo-600 hover:to-violet-600 font-medium text-lg transition-all shadow-lg hover:shadow-xl hover:shadow-indigo-500/20"
+          className="inline-flex items-center justify-center px-8 py-3 rounded-full text-primary-foreground bg-primary hover:bg-primary/90 font-medium text-lg transition-all shadow-lg hover:shadow-xl hover:shadow-primary/20"
         >
           Ver más testimonios
         </a>

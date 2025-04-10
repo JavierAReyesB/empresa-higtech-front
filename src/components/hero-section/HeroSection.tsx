@@ -2,6 +2,7 @@
 import { motion } from "framer-motion"
 import { Pacifico } from "next/font/google"
 import { cn } from "@/lib/utils"
+import { useTheme } from 'next-themes'
 
 const pacifico = Pacifico({
   subsets: ["latin"],
@@ -84,6 +85,8 @@ export default function HeroSection({
   title1?: string
   title2?: string
 }) {
+  const { theme } = useTheme()
+  
   const fadeUpVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i: number) => ({
@@ -97,7 +100,7 @@ export default function HeroSection({
     }),
   }
   return (
-    <div className="relative h-[100vh] max-h-[800px] w-full flex items-center justify-center bg-[#030303]">
+    <div className="relative h-[100vh] max-h-[800px] w-full flex items-center justify-center bg-background">
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.05] via-transparent to-rose-500/[0.05] blur-3xl" />
       <div className="absolute inset-0">
         <ElegantShape
@@ -150,15 +153,15 @@ export default function HeroSection({
             animate="visible"
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] mb-8 md:mb-12"
           >
-            <span className="text-sm text-white/60 tracking-wide">{badge}</span>
+            <span className="text-sm text-foreground/60 tracking-wide">{badge}</span>
           </motion.div>
           <motion.div custom={1} variants={fadeUpVariants} initial="hidden" animate="visible">
             <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-6 md:mb-8 tracking-tight">
-              <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80">{title1}</span>
+              <span className="geo-text-gradient">{title1}</span>
               <br />
               <span
                 className={cn(
-                  "bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-white/90 to-rose-300 ",
+                  "geo-text-gradient",
                   pacifico.className,
                 )}
               >
@@ -167,7 +170,7 @@ export default function HeroSection({
             </h1>
           </motion.div>
           <motion.div custom={2} variants={fadeUpVariants} initial="hidden" animate="visible">
-            <p className="text-base sm:text-lg md:text-xl text-white/40 mb-8 leading-relaxed font-light tracking-wide max-w-xl mx-auto px-4">
+            <p className="text-base sm:text-lg md:text-xl text-foreground/40 mb-8 leading-relaxed font-light tracking-wide max-w-xl mx-auto px-4">
               Soluciones tecnológicas innovadoras para empresas y profesionales que buscan transformar digitalmente sus negocios.
             </p>
           </motion.div>
@@ -185,7 +188,7 @@ export default function HeroSection({
             >
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
-                className="h-6 w-6 text-white animate-bounce" 
+                className="h-6 w-6 text-foreground animate-bounce" 
                 fill="none" 
                 viewBox="0 0 24 24" 
                 stroke="currentColor"
@@ -196,7 +199,7 @@ export default function HeroSection({
           </motion.div>
         </div>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-[#030303]/80 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/80 pointer-events-none" />
     </div>
   )
 }

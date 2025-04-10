@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Pacifico } from "next/font/google"
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
 
 const pacifico = Pacifico({
@@ -24,13 +25,20 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en' className={pacifico.variable}>
+    <html lang='en' className={pacifico.variable} suppressHydrationWarning>
       <body className='geo-bg antialiased'>
-        <ClientLayout>
-          <Header />
-          {children}
-          <Footer />
-        </ClientLayout>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          storageKey="higtech-theme"
+        >
+          <ClientLayout>
+            <Header />
+            {children}
+            <Footer />
+          </ClientLayout>
+        </ThemeProvider>
       </body>
     </html>
   )
