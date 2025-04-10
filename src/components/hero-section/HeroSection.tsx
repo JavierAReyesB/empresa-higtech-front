@@ -1,14 +1,14 @@
-"use client"
-import { motion } from "framer-motion"
-import { Pacifico } from "next/font/google"
-import { cn } from "@/lib/utils"
-import { useTheme } from 'next-themes'
+"use client";
+import { motion } from "framer-motion";
+import { Pacifico } from "next/font/google";
+import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
 
 const pacifico = Pacifico({
   subsets: ["latin"],
   weight: ["400"],
   variable: "--font-pacifico",
-})
+});
 
 function ElegantShape({
   className,
@@ -18,12 +18,12 @@ function ElegantShape({
   rotate = 0,
   gradient = "from-white/[0.08]",
 }: {
-  className?: string
-  delay?: number
-  width?: number
-  height?: number
-  rotate?: number
-  gradient?: string
+  className?: string;
+  delay?: number;
+  width?: number;
+  height?: number;
+  rotate?: number;
+  gradient?: string;
 }) {
   return (
     <motion.div
@@ -44,36 +44,8 @@ function ElegantShape({
         opacity: { duration: 1.2 },
       }}
       className={cn("absolute", className)}
-    >
-      <motion.div
-        animate={{
-          y: [0, 15, 0],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
-        }}
-        style={{
-          width,
-          height,
-        }}
-        className="relative"
-      >
-        <div
-          className={cn(
-            "absolute inset-0 rounded-full",
-            "bg-gradient-to-r to-transparent",
-            gradient,
-            "backdrop-blur-[2px] border-2 border-white/[0.15]",
-            "shadow-[0_8px_32px_0_rgba(255,255,255,0.1)]",
-            "after:absolute after:inset-0 after:rounded-full",
-            "after:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_70%)]",
-          )}
-        />
-      </motion.div>
-    </motion.div>
-  )
+    ></motion.div>
+  );
 }
 
 export default function HeroSection({
@@ -81,12 +53,12 @@ export default function HeroSection({
   title1 = "Innovación",
   title2 = "Digital",
 }: {
-  badge?: string
-  title1?: string
-  title2?: string
+  badge?: string;
+  title1?: string;
+  title2?: string;
 }) {
-  const { theme } = useTheme()
-  
+  const { theme } = useTheme();
+
   const fadeUpVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i: number) => ({
@@ -98,10 +70,10 @@ export default function HeroSection({
         ease: [0.25, 0.4, 0.25, 1],
       },
     }),
-  }
+  };
   return (
-    <div className="relative h-[100vh] max-h-[800px] w-full flex items-center justify-center bg-background">
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.05] via-transparent to-rose-500/[0.05] blur-3xl" />
+    <div className="relative h-[100vh] max-h-[800px] w-full flex items-center justify-center">
+      <div className="absolute inset-0 " />
       <div className="absolute inset-0">
         <ElegantShape
           delay={0.3}
@@ -153,53 +125,61 @@ export default function HeroSection({
             animate="visible"
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] mb-8 md:mb-12"
           >
-            <span className="text-sm text-foreground/60 tracking-wide">{badge}</span>
+            <span className="text-sm text-foreground/60 tracking-wide">
+              {badge}
+            </span>
           </motion.div>
-          <motion.div custom={1} variants={fadeUpVariants} initial="hidden" animate="visible">
+          <motion.div custom={1} initial="hidden" animate="visible">
             <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-6 md:mb-8 tracking-tight">
               <span className="geo-text-gradient">{title1}</span>
               <br />
-              <span
-                className={cn(
-                  "geo-text-gradient",
-                  pacifico.className,
-                )}
-              >
+              <span className={cn("geo-text-gradient", pacifico.className)}>
                 {title2}
               </span>
             </h1>
           </motion.div>
-          <motion.div custom={2} variants={fadeUpVariants} initial="hidden" animate="visible">
+          <motion.div
+            custom={2}
+            variants={fadeUpVariants}
+            initial="hidden"
+            animate="visible"
+          >
             <p className="text-base sm:text-lg md:text-xl text-foreground/40 mb-8 leading-relaxed font-light tracking-wide max-w-xl mx-auto px-4">
-              Soluciones tecnológicas innovadoras para empresas y profesionales que buscan transformar digitalmente sus negocios.
+              Soluciones tecnológicas innovadoras para empresas y profesionales
+              que buscan transformar digitalmente sus negocios.
             </p>
           </motion.div>
-          
-          <motion.div 
-            custom={3} 
-            variants={fadeUpVariants} 
-            initial="hidden" 
+
+          <motion.div
+            custom={3}
+            variants={fadeUpVariants}
+            initial="hidden"
             animate="visible"
             className="mt-8"
           >
-            <a 
-              href="#about" 
+            <a
+              href="#about"
               className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-white/10 backdrop-blur-sm hover:border-white/30 transition-all"
             >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                className="h-6 w-6 text-foreground animate-bounce" 
-                fill="none" 
-                viewBox="0 0 24 24" 
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 text-foreground animate-bounce"
+                fill="none"
+                viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                />
               </svg>
             </a>
           </motion.div>
         </div>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/80 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t  via-transparent to-background/80 pointer-events-none" />
     </div>
-  )
+  );
 }
