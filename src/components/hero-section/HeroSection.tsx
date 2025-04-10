@@ -49,9 +49,9 @@ function ElegantShape({
 }
 
 export default function HeroSection({
-  badge = "HigTech",
-  title1 = "Innovación",
-  title2 = "Digital",
+  badge = "Omar Somoza",
+  title1 = "Soluciones",
+  title2 = "digitales eficientes",
 }: {
   badge?: string;
   title1?: string;
@@ -123,19 +123,18 @@ export default function HeroSection({
             variants={fadeUpVariants}
             initial="hidden"
             animate="visible"
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] mb-8 md:mb-12"
+            className="inline-flex items-center gap-2 px-3 py-1  mb-8 md:mb-12"
           >
-            <span className="text-sm text-foreground/60 tracking-wide">
+            <span className="text-lg sm:text-xl md:text-7xl text-sm text-foreground/60 tracking-wide font-dancing overflow-hidden whitespace-nowrap border-r-2 border-foreground animate-typing animate-caret">
               {badge}
             </span>
           </motion.div>
           <motion.div custom={1} initial="hidden" animate="visible">
-            <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-6 md:mb-8 tracking-tight">
-              <span className="geo-text-gradient">{title1}</span>
-              <br />
-              <span className={cn("geo-text-gradient", pacifico.className)}>
+            <h1 className="text-xl sm:text-xl md:text-8xl font-bold mb-6 md:mb-8 tracking-tight">
+              <div className="geo-text-gradient">{title1}</div>
+              <div className="geo-text-gradient text-lg sm:text-xl md:text-5xl">
                 {title2}
-              </span>
+              </div>
             </h1>
           </motion.div>
           <motion.div
@@ -145,8 +144,7 @@ export default function HeroSection({
             animate="visible"
           >
             <p className="text-base sm:text-lg md:text-xl text-foreground/40 mb-8 leading-relaxed font-light tracking-wide max-w-xl mx-auto px-4">
-              Soluciones tecnológicas innovadoras para empresas y profesionales
-              que buscan transformar digitalmente sus negocios.
+              Desarrollador web con enfoque en calidad, escalabilidad y detalle.
             </p>
           </motion.div>
 

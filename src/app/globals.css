@@ -119,7 +119,7 @@
 }
 
 /* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 
 /* Global Geometric Styles */
 @layer components {
@@ -127,33 +127,34 @@
     @apply absolute rounded-full backdrop-blur-[2px] border-2 border-white/[0.15] shadow-[0_8px_32px_0_rgba(255,255,255,0.1)];
     @apply after:absolute after:inset-0 after:rounded-full after:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_70%)];
   }
-  
+
   .geo-bg {
     @apply bg-[#030303] relative overflow-hidden;
     @apply before:absolute before:inset-0 before:bg-gradient-to-br before:from-indigo-500/[0.05] before:via-transparent before:to-rose-500/[0.05] before:blur-3xl;
   }
-  
-  .light .geo-bg, html[class="light"] .geo-bg {
+
+  .light .geo-bg,
+  html[class="light"] .geo-bg {
     @apply bg-[#faf4e8];
     @apply before:from-[#e5c38c]/[0.30] before:via-transparent before:to-[#efdcb9]/[0.30];
   }
-  
   .geo-text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-white/90 to-rose-300;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-800 via-white/80 to-rose-700;
   }
-  
-  .light .geo-text-gradient, html[class="light"] .geo-text-gradient {
+  .light .geo-text-gradient,
+  html[class="light"] .geo-text-gradient {
     @apply from-[#693e25] via-[#381e12] to-[#824a2a];
   }
-  
+
   .geo-card {
     @apply relative rounded-xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm;
     @apply hover:border-white/[0.15] transition-all duration-300;
     @apply before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-br before:from-indigo-500/[0.03] before:to-transparent before:opacity-0 before:transition-opacity;
     @apply hover:before:opacity-100;
   }
-  
-  .light .geo-card, html[class="light"] .geo-card {
+
+  .light .geo-card,
+  html[class="light"] .geo-card {
     @apply border-[#efdcb9]/[0.4] bg-[#f8efdd]/[0.5];
     @apply hover:border-[#e5c38c]/[0.8];
     @apply before:from-[#e5c38c]/[0.15] before:to-transparent;
