@@ -6,7 +6,8 @@ import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Linkedin, Instagram, Github } from "lucide-react";
+import { Linkedin, Instagram, Github, PlayCircle } from "lucide-react";
+import VideoPlayer from "../VideoPlayer";
 
 const pacifico = Pacifico({
   subsets: ["latin"],
@@ -97,6 +98,7 @@ export default function HeroSection({
 }) {
   const { theme } = useTheme();
   const [showBadge, setShowBadge] = useState(false);
+  const [showVideoModal, setShowVideoModal] = useState(false);
   const pathname = usePathname();
   const isSpanish = pathname?.includes('/es');
 
@@ -203,6 +205,19 @@ export default function HeroSection({
                 : "Founder at Avanzadi"}
             </p>
             
+            {/* Video Button */}
+            <div className="mb-5">
+              <motion.button
+                onClick={() => setShowVideoModal(true)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary/20 text-primary border border-primary/30 hover:bg-primary/30 transition-colors"
+              >
+                <PlayCircle size={18} />
+                <span className="text-sm font-medium">{isSpanish ? "Ver presentación" : "Watch introduction"}</span>
+              </motion.button>
+            </div>
+            
             {/* Redes sociales */}
             <div className="flex justify-center space-x-4 mb-8">
               <motion.a 
@@ -262,6 +277,13 @@ export default function HeroSection({
         </div>
       </div>
       <div className="absolute inset-0 bg-gradient-to-t  via-transparent to-background/80 pointer-events-none" />
+      
+      {/* Video Modal */}
+      <VideoPlayer 
+        isOpen={showVideoModal} 
+        onClose={() => setShowVideoModal(false)}
+        videoSrc="/videos/omar-presentation.mp4"
+      />
     </div>
   );
 }

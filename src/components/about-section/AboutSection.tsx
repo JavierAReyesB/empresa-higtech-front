@@ -37,7 +37,7 @@ export default function AboutSection() {
       </motion.h2>
       
       <div className="flex flex-col md:flex-row items-center justify-center mb-10 gap-10">
-        {/* Placeholder para foto profesional - reemplazar con tu foto */}
+        {/* Foto profesional de Omar */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -45,10 +45,13 @@ export default function AboutSection() {
           transition={{ duration: 0.5 }}
           className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white/10 shadow-lg"
         >
-          {/* Reemplazar con tu foto: <Image src="/tu-foto.jpg" alt="Omar Somoza" width={256} height={256} /> */}
-          <div className="w-full h-full bg-gradient-to-br from-indigo-500/30 to-purple-500/30 flex items-center justify-center">
-            <span className="text-6xl font-semibold text-white/70">OS</span>
-          </div>
+          <Image 
+            src="/images/pfOmar.jpg" 
+            alt="Omar Somoza" 
+            width={256} 
+            height={256} 
+            className="w-full h-full object-cover"
+          />
         </motion.div>
         
         <motion.div
