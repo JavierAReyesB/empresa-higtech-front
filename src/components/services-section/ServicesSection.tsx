@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { useTheme } from 'next-themes'
 import { usePathname } from 'next/navigation'
-import { Monitor, LineChart, Lightbulb } from 'lucide-react'
+import { Monitor, LineChart, Lightbulb, MessageCircle } from 'lucide-react'
 
 export default function ServicesSection() {
   const { theme } = useTheme()
@@ -60,6 +60,15 @@ export default function ServicesSection() {
         : "Development of digital strategies aligned with business objectives, identifying transformation opportunities with measurable impact on results.",
       color: "amber",
       href: "#"
+    },
+    {
+      icon: <MessageCircle className="h-8 w-8 text-emerald-400" />,
+      title: isSpanish ? "Mentoría" : "Mentoring",
+      description: isSpanish 
+        ? "Acompañamiento profesional para líderes técnicos y gestores de proyecto, compartiendo conocimientos y mejores prácticas para potenciar su desarrollo." 
+        : "Professional guidance for technical leaders and project managers, sharing knowledge and best practices to enhance their development.",
+      color: "emerald",
+      href: "#"
     }
   ]
 
@@ -71,9 +80,9 @@ export default function ServicesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className='text-4xl md:text-5xl font-bold mb-12 text-center geo-text-gradient'
+          className='text-4xl md:text-5xl font-bold mb-10 text-center geo-text-gradient'
         >
-          {isSpanish ? 'Mis Servicios' : 'My Services'}
+          {isSpanish ? 'Mis Servicios' : 'What I Do'}
         </motion.h2>
         
         <motion.div 
@@ -81,7 +90,7 @@ export default function ServicesSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className='grid md:grid-cols-3 gap-8'
+          className='grid md:grid-cols-2 lg:grid-cols-4 gap-8'
         >
           {services.map((service, index) => (
             <motion.div 
@@ -96,19 +105,23 @@ export default function ServicesSection() {
               <h3 className='text-2xl font-semibold mb-4 text-foreground'>
                 {service.title}
               </h3>
-              <p className='text-foreground/70'>
+              <p className='text-foreground/70 mb-4'>
                 {service.description}
               </p>
-              <motion.a 
-                href={service.href} 
-                className={`inline-block mt-6 text-${service.color}-400 hover:text-${service.color}-300 font-medium`}
-                whileHover={{ x: 5 }}
-                transition={{ duration: 0.2 }}
-              >
-                {isSpanish ? 'Conocer más →' : 'Learn more →'}
-              </motion.a>
             </motion.div>
           ))}
+        </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="text-center mt-12 text-foreground/50 text-lg font-light italic"
+        >
+          {isSpanish 
+            ? "Disponible para colaboraciones estratégicas y asesorías."
+            : "Available for strategic collaborations and advisory roles."}
         </motion.div>
       </div>
     </section>

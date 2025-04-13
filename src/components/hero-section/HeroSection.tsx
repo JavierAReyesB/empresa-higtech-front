@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { Linkedin, Instagram, Github } from "lucide-react";
 
 const pacifico = Pacifico({
   subsets: ["latin"],
@@ -190,11 +192,44 @@ export default function HeroSection({
             initial="hidden"
             animate="visible"
           >
-            <p className="text-base sm:text-lg md:text-xl text-foreground/40 mb-8 leading-relaxed font-light tracking-wide max-w-xl mx-auto px-4">
+            <p className="text-base sm:text-lg md:text-xl text-foreground/40 mb-2 leading-relaxed font-light tracking-wide max-w-xl mx-auto px-4">
               {isSpanish 
                 ? "Transformando desafíos empresariales en soluciones digitales exitosas."
                 : "Transforming business challenges into successful digital solutions."}
             </p>
+            <p className="text-sm sm:text-base text-foreground/30 mb-5 font-light tracking-wide max-w-xl mx-auto px-4">
+              {isSpanish 
+                ? "Fundador de Avanzadi"
+                : "Founder at Avanzadi"}
+            </p>
+            
+            {/* Redes sociales */}
+            <div className="flex justify-center space-x-4 mb-8">
+              <motion.a 
+                href="https://www.linkedin.com/in/omar-somoza-230b71228" 
+                target="_blank"
+                whileHover={{ y: -3, scale: 1.1 }}
+                className="p-2 rounded-full bg-white/5 border border-white/10 hover:border-white/30 transition-all"
+              >
+                <Linkedin size={20} className="text-foreground/60" />
+              </motion.a>
+              <motion.a 
+                href="https://www.instagram.com/omarsomoza1/" 
+                target="_blank"
+                whileHover={{ y: -3, scale: 1.1 }}
+                className="p-2 rounded-full bg-white/5 border border-white/10 hover:border-white/30 transition-all"
+              >
+                <Instagram size={20} className="text-foreground/60" />
+              </motion.a>
+              <motion.a 
+                href="https://www.avanzadi.com/" 
+                target="_blank"
+                whileHover={{ y: -3, scale: 1.1 }}
+                className="p-2 rounded-full bg-white/5 border border-white/10 hover:border-white/30 transition-all"
+              >
+                <span className="text-foreground/60 text-sm font-medium px-2">Avanzadi</span>
+              </motion.a>
+            </div>
           </motion.div>
 
           <motion.div

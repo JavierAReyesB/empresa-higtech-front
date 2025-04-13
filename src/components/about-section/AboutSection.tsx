@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useTheme } from 'next-themes'
 import { usePathname } from 'next/navigation'
+import Image from 'next/image'
 
 export default function AboutSection() {
   const { theme } = useTheme()
@@ -35,33 +36,95 @@ export default function AboutSection() {
         {isSpanish ? 'Sobre Mí' : 'About Me'}
       </motion.h2>
       
+      <div className="flex flex-col md:flex-row items-center justify-center mb-10 gap-10">
+        {/* Placeholder para foto profesional - reemplazar con tu foto */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white/10 shadow-lg"
+        >
+          {/* Reemplazar con tu foto: <Image src="/tu-foto.jpg" alt="Omar Somoza" width={256} height={256} /> */}
+          <div className="w-full h-full bg-gradient-to-br from-indigo-500/30 to-purple-500/30 flex items-center justify-center">
+            <span className="text-6xl font-semibold text-white/70">OS</span>
+          </div>
+        </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="md:w-1/2 text-left"
+        >
+          <p className="text-lg text-foreground/70 mb-4">
+            {isSpanish 
+              ? "Con más de 12 años en el sector tecnológico, he liderado proyectos para startups y grandes empresas, combinando visión estratégica con conocimiento técnico para entregar soluciones digitales de impacto."
+              : "With over 12 years in the tech industry, I've led projects for startups and large companies, combining strategic vision with technical expertise to deliver impactful digital solutions."}
+          </p>
+          <p className="text-lg text-foreground/70 mb-4">
+            {isSpanish 
+              ? "Me especializo en guiar equipos multidisciplinarios para traducir objetivos de negocio en productos tecnológicos excepcionales que generan valor medible."
+              : "I specialize in guiding multidisciplinary teams to translate business objectives into exceptional tech products that generate measurable value."}
+          </p>
+          <p className="text-lg text-foreground/70">
+            {isSpanish 
+              ? "Como fundador de Avanzadi, ayudo a empresas a potenciar su transformación digital con estrategias personalizadas y soluciones tecnológicas avanzadas."
+              : "As the founder of Avanzadi, I help companies enhance their digital transformation with tailored strategies and advanced technological solutions."}
+          </p>
+        </motion.div>
+      </div>
+      
       <motion.div 
         custom={1}
         variants={itemVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className='flex flex-col md:flex-row gap-8 max-w-5xl'
+        className='grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl'
       >
-        <div className='flex-1 backdrop-blur-sm rounded-lg p-6 border border-white/10 geo-card hover:border-white/20 transition-all'>
-          <h3 className='text-2xl font-semibold mb-3 text-foreground'>
-            {isSpanish ? 'Mi Enfoque' : 'My Approach'}
+        <div className='backdrop-blur-sm rounded-lg p-5 border border-white/10 geo-card hover:border-white/20 transition-all'>
+          <h3 className='text-xl font-semibold mb-2 text-foreground'>
+            {isSpanish ? 'Liderazgo' : 'Leadership'}
           </h3>
-          <p className='text-lg text-foreground/70'>
+          <p className='text-sm text-foreground/70'>
             {isSpanish 
-              ? 'Combino liderazgo estratégico con expertise técnico para transformar ideas en soluciones digitales exitosas, maximizando el retorno de inversión y minimizando riesgos.'
-              : 'I combine strategic leadership with technical expertise to transform ideas into successful digital solutions, maximizing return on investment while minimizing risks.'}
+              ? 'Dirección estratégica que inspira equipos y maximiza resultados.'
+              : 'Strategic direction that inspires teams and maximizes results.'}
           </p>
         </div>
         
-        <div className='flex-1 backdrop-blur-sm rounded-lg p-6 border border-white/10 geo-card hover:border-white/20 transition-all'>
-          <h3 className='text-2xl font-semibold mb-3 text-foreground'>
-            {isSpanish ? 'Mi Experiencia' : 'My Experience'}
+        <div className='backdrop-blur-sm rounded-lg p-5 border border-white/10 geo-card hover:border-white/20 transition-all'>
+          <h3 className='text-xl font-semibold mb-2 text-foreground'>
+            {isSpanish ? 'Innovación' : 'Innovation'}
           </h3>
-          <p className='text-lg text-foreground/70'>
+          <p className='text-sm text-foreground/70'>
             {isSpanish
-              ? 'Más de 12 años dirigiendo proyectos tecnológicos complejos, desde startups hasta grandes corporaciones, siempre enfocado en resultados medibles y calidad excepcional.'
-              : 'Over 12 years leading complex technology projects, from startups to large corporations, always focused on measurable results and exceptional quality.'}
+              ? 'Soluciones creativas y disruptivas para desafíos complejos.'
+              : 'Creative and disruptive solutions for complex challenges.'}
+          </p>
+        </div>
+        
+        <div className='backdrop-blur-sm rounded-lg p-5 border border-white/10 geo-card hover:border-white/20 transition-all'>
+          <h3 className='text-xl font-semibold mb-2 text-foreground'>
+            {isSpanish ? 'Confianza' : 'Trust'}
+          </h3>
+          <p className='text-sm text-foreground/70'>
+            {isSpanish
+              ? 'Relaciones basadas en transparencia, integridad y resultados.'
+              : 'Relationships based on transparency, integrity, and results.'}
+          </p>
+        </div>
+        
+        <div className='backdrop-blur-sm rounded-lg p-5 border border-white/10 geo-card hover:border-white/20 transition-all'>
+          <h3 className='text-xl font-semibold mb-2 text-foreground'>
+            {isSpanish ? 'Impacto' : 'Impact'}
+          </h3>
+          <p className='text-sm text-foreground/70'>
+            {isSpanish
+              ? 'Compromiso con resultados medibles que generan valor real.'
+              : 'Commitment to measurable results that generate real value.'}
           </p>
         </div>
       </motion.div>
@@ -72,11 +135,11 @@ export default function AboutSection() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className='text-xl max-w-4xl mt-8 text-foreground/80'
+        className='text-xl max-w-4xl mt-10 text-foreground/70 italic'
       >
         {isSpanish
-          ? 'Como director de proyectos y líder técnico, mi misión es ayudar a empresas y organizaciones a alcanzar sus objetivos estratégicos a través de soluciones digitales innovadoras y eficientes, siempre priorizando la comunicación clara y la entrega de valor.'
-          : 'As a project director and technical leader, my mission is to help businesses and organizations achieve their strategic goals through innovative and efficient digital solutions, always prioritizing clear communication and value delivery.'}
+          ? '"Como Project Manager y líder técnico, no solo dirijo proyectos, transformo desafíos en oportunidades. Mi objetivo es guiar a empresas y personas hacia soluciones digitales que marquen la diferencia, con estrategia, claridad y confianza."'
+          : '"As a Project Manager and technical leader, I don\'t just manage projects, I transform challenges into opportunities. My goal is to guide companies and people towards digital solutions that make a difference, with strategy, clarity, and confidence."'}
       </motion.p>
     </section>
   )
