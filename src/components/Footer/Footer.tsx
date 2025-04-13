@@ -4,6 +4,7 @@ import type React from 'react'
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -20,11 +21,12 @@ import {
   MapPin,
   Sun,
   Moon,
-  ChevronUp,
-  ExternalLink
+  ChevronUp
 } from 'lucide-react'
 
 export default function Footer() {
+  const pathname = usePathname()
+  const isSpanish = pathname?.includes('/es')
   const [isDarkMode, setIsDarkMode] = useState(false)
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -103,15 +105,26 @@ export default function Footer() {
           >
             <div className='text-center'>
               <h3 className='mb-2 text-2xl font-light tracking-tight'>
-                Recibe las{' '}
-                <span className='font-semibold text-primary'>
-                  últimas novedades
-                </span>{' '}
-                en tecnología
+                {isSpanish ? (
+                  <>
+                    Recibe mis{' '}
+                    <span className='font-semibold text-primary'>
+                      actualizaciones profesionales
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    Receive my{' '}
+                    <span className='font-semibold text-primary'>
+                      professional updates
+                    </span>
+                  </>
+                )}
               </h3>
               <p className='mb-6 text-muted-foreground'>
-                Suscríbete a nuestro newsletter y mantente al día con las
-                últimas tendencias y avances tecnológicos.
+                {isSpanish 
+                  ? 'Suscríbete para mantenerte al día con mis últimos proyectos y servicios.'
+                  : 'Subscribe to stay up to date with my latest projects and services.'}
               </p>
 
               <form
@@ -121,7 +134,7 @@ export default function Footer() {
                 <div className='relative flex-1'>
                   <Input
                     type='email'
-                    placeholder='Tu correo electrónico'
+                    placeholder={isSpanish ? 'Tu correo electrónico' : 'Your email'}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -138,7 +151,9 @@ export default function Footer() {
                     className='h-11 w-full rounded-md px-6 sm:w-auto'
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? 'Enviando...' : 'Suscribirse'}
+                    {isSubmitting 
+                      ? (isSpanish ? 'Enviando...' : 'Sending...') 
+                      : (isSpanish ? 'Suscribirse' : 'Subscribe')}
                   </Button>
                 </motion.div>
               </form>
@@ -151,8 +166,9 @@ export default function Footer() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                   >
-                    ¡Gracias por suscribirte! Pronto recibirás nuestras
-                    novedades.
+                    {isSpanish 
+                      ? '¡Gracias por suscribirte! Pronto recibirás mis actualizaciones.'
+                      : 'Thank you for subscribing! You will receive my updates soon.'}
                   </motion.p>
                 )}
               </AnimatePresence>
@@ -161,7 +177,7 @@ export default function Footer() {
         </div>
 
         {/* Main Footer Content */}
-        <div className='grid grid-cols-1 gap-x-12 gap-y-10 md:grid-cols-2 lg:grid-cols-4'>
+        <div className='grid grid-cols-1 gap-x-12 gap-y-10 md:grid-cols-2 lg:grid-cols-3'>
           {/* Brand Section */}
           <div className='space-y-6'>
             <motion.div
@@ -172,20 +188,20 @@ export default function Footer() {
             >
               <img
                 src='/next.svg'
-                alt='TechCompany Logo'
+                alt='Omar Somoza'
                 width='40'
                 height='40'
                 className='mr-3'
               />
 
               <span className='text-xl font-light tracking-tight'>
-                Tech<span className='font-semibold'>Company</span>
+                Omar<span className='font-semibold'>Somoza</span>
               </span>
             </motion.div>
             <p className='text-sm leading-relaxed text-muted-foreground'>
-              Innovamos con tecnología para un mundo mejor. Creamos soluciones
-              digitales que transforman empresas y mejoran la vida de las
-              personas.
+              {isSpanish
+                ? 'Director de proyectos y líder técnico con pasión por transformar desafíos empresariales en soluciones digitales exitosas.'
+                : 'Project director and technical leader with a passion for transforming business challenges into successful digital solutions.'}
             </p>
             <div className='flex space-x-3'>
               <motion.a
@@ -247,72 +263,19 @@ export default function Footer() {
           <div className='space-y-6'>
             <div>
               <h3 className='mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground'>
-                Navegación
+                {isSpanish ? 'Navegación' : 'Navigation'}
               </h3>
               <ul className='grid grid-cols-2 gap-2'>
-                {['Inicio', 'Productos', 'Servicios', 'Blog', 'Contacto'].map(
-                  (item) => (
-                    <motion.li key={item} whileHover={{ x: 3 }}>
-                      <Link
-                        href={`/${item.toLowerCase()}`}
-                        className='text-sm text-foreground transition-colors hover:text-primary'
-                      >
-                        {item}
-                      </Link>
-                    </motion.li>
-                  )
-                )}
-              </ul>
-            </div>
-
-            <div>
-              <h3 className='mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground'>
-                Productos
-              </h3>
-              <ul className='space-y-2'>
-                {[
-                  {
-                    name: 'BlackGestionTime',
-                    href: '/productos/blackgestiontime'
-                  },
-                  { name: 'Páginas web a medida', href: '/productos/web' },
-                  { name: 'AI Teacher', href: '/productos/ai-teacher' }
-                ].map((product) => (
-                  <motion.li key={product.name} whileHover={{ x: 3 }}>
+                {(isSpanish 
+                  ? ['Inicio', 'Servicios', 'Proyectos', 'Testimonios', 'Contacto'] 
+                  : ['Home', 'Services', 'Projects', 'Testimonials', 'Contact']
+                ).map((item, i) => (
+                  <motion.li key={item} whileHover={{ x: 3 }}>
                     <Link
-                      href={product.href}
-                      className='group flex items-center text-sm text-foreground transition-colors hover:text-primary'
-                    >
-                      {product.name}
-                      <ExternalLink
-                        size={12}
-                        className='ml-1 opacity-0 transition-opacity group-hover:opacity-100'
-                      />
-                    </Link>
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* Resources & Support */}
-          <div className='space-y-6'>
-            <div>
-              <h3 className='mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground'>
-                Recursos
-              </h3>
-              <ul className='space-y-2'>
-                {[
-                  { name: 'FAQ / Preguntas frecuentes', href: '/faq' },
-                  { name: 'Documentación técnica', href: '/docs' },
-                  { name: 'Centro de soporte', href: '/soporte' }
-                ].map((resource) => (
-                  <motion.li key={resource.name} whileHover={{ x: 3 }}>
-                    <Link
-                      href={resource.href}
+                      href={i === 0 ? (isSpanish ? '/es' : '/') : `#${['', 'servicios', 'proyectos', 'testimonios', 'contacto'][i]}`}
                       className='text-sm text-foreground transition-colors hover:text-primary'
                     >
-                      {resource.name}
+                      {item}
                     </Link>
                   </motion.li>
                 ))}
@@ -321,20 +284,27 @@ export default function Footer() {
 
             <div>
               <h3 className='mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground'>
-                Legal
+                {isSpanish ? 'Servicios' : 'Services'}
               </h3>
               <ul className='space-y-2'>
-                {[
-                  { name: 'Términos y condiciones', href: '/legal/terminos' },
-                  { name: 'Política de privacidad', href: '/legal/privacidad' },
-                  { name: 'Cookies', href: '/legal/cookies' }
-                ].map((legal) => (
-                  <motion.li key={legal.name} whileHover={{ x: 3 }}>
+                {(isSpanish
+                  ? [
+                      { name: 'Dirección de Proyectos', href: '#servicios' },
+                      { name: 'Liderazgo Técnico', href: '#servicios' },
+                      { name: 'Estrategia Digital', href: '#servicios' }
+                    ]
+                  : [
+                      { name: 'Project Management', href: '#servicios' },
+                      { name: 'Technical Leadership', href: '#servicios' },
+                      { name: 'Digital Strategy', href: '#servicios' }
+                    ]
+                ).map((service) => (
+                  <motion.li key={service.name} whileHover={{ x: 3 }}>
                     <Link
-                      href={legal.href}
+                      href={service.href}
                       className='text-sm text-foreground transition-colors hover:text-primary'
                     >
-                      {legal.name}
+                      {service.name}
                     </Link>
                   </motion.li>
                 ))}
@@ -346,7 +316,7 @@ export default function Footer() {
           <div className='space-y-6'>
             <div>
               <h3 className='mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground'>
-                Contacto
+                {isSpanish ? 'Contacto' : 'Contact'}
               </h3>
               <ul className='space-y-4'>
                 <li className='flex items-center text-sm text-foreground'>
@@ -354,10 +324,10 @@ export default function Footer() {
                     <Mail size={14} />
                   </div>
                   <a
-                    href='mailto:info@techcompany.com'
+                    href='mailto:omar.somoza@example.com'
                     className='ml-3 hover:text-primary hover:underline'
                   >
-                    info@techcompany.com
+                    omar.somoza@example.com
                   </a>
                 </li>
                 <li className='flex items-center text-sm text-foreground'>
@@ -376,9 +346,7 @@ export default function Footer() {
                     <MapPin size={14} />
                   </div>
                   <span className='ml-3 leading-tight'>
-                    Calle Tecnología 123
-                    <br />
-                    28001 Madrid, España
+                    Madrid, España
                   </span>
                 </li>
               </ul>
@@ -387,7 +355,7 @@ export default function Footer() {
             <div className='rounded-lg border border-border/40 p-4'>
               <div className='flex items-center justify-between'>
                 <span className='text-xs font-medium text-muted-foreground'>
-                  Preferencia de tema
+                  {isSpanish ? 'Preferencia de tema' : 'Theme preference'}
                 </span>
                 <div className='flex items-center space-x-2'>
                   <Switch
@@ -400,12 +368,12 @@ export default function Footer() {
                     {isDarkMode ? (
                       <div className='flex items-center'>
                         <Moon size={12} className='mr-1' />
-                        <span>Oscuro</span>
+                        <span>{isSpanish ? 'Oscuro' : 'Dark'}</span>
                       </div>
                     ) : (
                       <div className='flex items-center'>
                         <Sun size={12} className='mr-1' />
-                        <span>Claro</span>
+                        <span>{isSpanish ? 'Claro' : 'Light'}</span>
                       </div>
                     )}
                   </Label>
@@ -419,9 +387,9 @@ export default function Footer() {
 
         {/* Bottom Footer */}
         <div className='flex flex-col items-center justify-between space-y-4 text-center text-xs text-muted-foreground md:flex-row md:space-y-0 md:text-left'>
-          <div>© {currentYear} TechCompany. Todos los derechos reservados.</div>
+          <div>© {currentYear} Omar Somoza. {isSpanish ? 'Todos los derechos reservados.' : 'All rights reserved.'}</div>
           <div className='flex items-center space-x-1'>
-            <span>Powered by</span>
+            <span>{isSpanish ? 'Creado con' : 'Built with'}</span>
             <motion.a
               href='https://nextjs.org'
               target='_blank'

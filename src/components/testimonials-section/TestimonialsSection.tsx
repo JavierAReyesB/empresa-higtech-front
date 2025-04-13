@@ -2,10 +2,13 @@
 
 import { motion } from 'framer-motion'
 import { useTheme } from 'next-themes'
+import { usePathname } from 'next/navigation'
 import { Star } from 'lucide-react'
 
 export default function TestimonialsSection() {
   const { theme } = useTheme()
+  const pathname = usePathname()
+  const isSpanish = pathname?.includes('/es')
   
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -31,23 +34,42 @@ export default function TestimonialsSection() {
     }
   }
 
-  const testimonials = [
+  const testimonials = isSpanish ? [
     {
-      text: "El equipo hizo un trabajo increíble con nuestro sitio web. La experiencia de usuario y el diseño superaron todas nuestras expectativas.",
-      author: "Juan Pérez",
-      company: "TechSolutions Inc.",
+      text: "Omar transformó nuestro enfoque digital con una combinación perfecta de liderazgo estratégico y experticia técnica. Entregó nuestro proyecto a tiempo y dentro del presupuesto.",
+      author: "María García",
+      company: "FinTech Innovación",
       stars: 5
     },
     {
-      text: "Nos ayudaron a digitalizar nuestra empresa de manera eficiente y profesional. La transición fue fluida y el resultado final es espectacular.",
-      author: "Ana Gómez",
-      company: "Innovatech",
+      text: "Su capacidad para traducir objetivos de negocio en soluciones tecnológicas efectivas es extraordinaria. Omar nos ahorró tiempo, dinero y estrés en nuestro proyecto más importante.",
+      author: "Carlos Mendoza",
+      company: "Grupo Logística+",
       stars: 5
     },
     {
-      text: "Gracias a ellos, ahora tenemos una app móvil increíble para nuestros clientes. Las reseñas son excelentes y nuestras ventas han aumentado.",
-      author: "Carlos Ramírez",
-      company: "MobileX",
+      text: "Trabajar con Omar significó tener un socio que realmente entendió nuestras necesidades y las transformó en una solución digital que superó todas nuestras expectativas.",
+      author: "Laura Sánchez",
+      company: "EduTech Solutions",
+      stars: 5
+    }
+  ] : [
+    {
+      text: "Omar transformed our digital approach with a perfect combination of strategic leadership and technical expertise. He delivered our project on time and within budget.",
+      author: "Maria Garcia",
+      company: "FinTech Innovation",
+      stars: 5
+    },
+    {
+      text: "His ability to translate business objectives into effective technological solutions is extraordinary. Omar saved us time, money, and stress on our most important project.",
+      author: "Carlos Mendoza",
+      company: "Logistics+ Group",
+      stars: 5
+    },
+    {
+      text: "Working with Omar meant having a partner who truly understood our needs and transformed them into a digital solution that exceeded all our expectations.",
+      author: "Laura Sanchez",
+      company: "EduTech Solutions",
       stars: 5
     }
   ];
@@ -61,7 +83,7 @@ export default function TestimonialsSection() {
         transition={{ duration: 0.7 }}
         className='text-4xl md:text-5xl font-bold mb-12 text-center geo-text-gradient'
       >
-        Lo que dicen nuestros clientes
+        {isSpanish ? 'Lo Que Dicen Mis Clientes' : 'What My Clients Say'}
       </motion.h2>
       
       <motion.div 
@@ -114,7 +136,7 @@ export default function TestimonialsSection() {
           href="#" 
           className="inline-flex items-center justify-center px-8 py-3 rounded-full text-primary-foreground bg-primary hover:bg-primary/90 font-medium text-lg transition-all shadow-lg hover:shadow-xl hover:shadow-primary/20"
         >
-          Ver más testimonios
+          {isSpanish ? 'Ver más proyectos' : 'View more projects'}
         </a>
       </motion.div>
     </section>

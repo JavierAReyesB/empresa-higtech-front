@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTheme } from 'next-themes'
-import { Search, ShoppingCart, User, Menu, X, Sun, Moon } from 'lucide-react'
+import { Search, Briefcase, User, Menu, X, Sun, Moon, Globe, Mail } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -19,7 +19,6 @@ import {
   SheetClose
 } from '@/components/ui/sheet'
 import { Input } from '@/components/ui/input'
-import { Badge } from '@/components/ui/badge'
 import { motion } from 'framer-motion'
 
 export default function Header() {
@@ -27,6 +26,8 @@ export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const pathname = usePathname()
   const [mounted, setMounted] = useState(false)
+  
+  const isSpanish = pathname?.includes('/es')
 
   // After mounting, we have access to the theme
   useEffect(() => setMounted(true), [])
@@ -35,15 +36,20 @@ export default function Header() {
     setTheme(resolvedTheme === 'light' ? 'dark' : 'light')
   }
 
-  // ✅ Enlaces corregidos
-  const navItems = [
-    { name: 'Inicio', href: '/' },
-    { name: 'BlackGestionTime', href: '/blackgestiontime' },
-    { name: 'Páginas Web a Medida', href: '/paginas-web-a-medida' },
-    { name: 'Proyecto AI Teacher', href: '/aiteacher' }
+  // Enlaces acorde a un portafolio profesional
+  const navItems = isSpanish ? [
+    { name: 'Inicio', href: isSpanish ? '/es' : '/' },
+    { name: 'Servicios', href: '#servicios' },
+    { name: 'Proyectos', href: '#proyectos' },
+    { name: 'Testimonios', href: '#testimonios' },
+    { name: 'Contacto', href: '#contacto' }
+  ] : [
+    { name: 'Home', href: isSpanish ? '/es' : '/' },
+    { name: 'Services', href: '#servicios' },
+    { name: 'Projects', href: '#proyectos' },
+    { name: 'Testimonials', href: '#testimonios' },
+    { name: 'Contact', href: '#contacto' }
   ]
-
-  const cartItemCount = 3
 
   // Don't render theme-specific parts until mounted (client-side)
   if (!mounted) {
@@ -62,7 +68,6 @@ export default function Header() {
               <div className='h-10 w-10'></div>
               <div className='h-10 w-10'></div>
               <div className='h-10 w-10'></div>
-              <div className='h-10 w-10'></div>
               <div className='hidden sm:block h-10 w-32'></div>
               <div className='lg:hidden h-10 w-10'></div>
             </div>
@@ -73,7 +78,7 @@ export default function Header() {
   }
 
   return (
-    <header className='w-full border-b border-white/10 bg-transparent backdrop-blur-sm z-10'>
+    <header className='w-full border-b border-white/10 bg-transparent backdrop-blur-sm fixed top-0 left-0 right-0 z-50'>
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -83,10 +88,10 @@ export default function Header() {
         <div className='flex h-16 items-center justify-between'>
           {/* Logo */}
           <Link
-            href='/'
+            href={isSpanish ? '/es' : '/'}
             className='flex items-center border border-white/20 rounded-full p-2 geo-card'
           >
-            <span className='text-xl font-bold text-foreground'>HigTech</span>
+            <span className='text-xl font-bold text-foreground'>Omar Somoza</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -106,36 +111,30 @@ export default function Header() {
 
           {/* Right side items */}
           <div className='flex items-center space-x-2'>
-            {/* Search */}
-            <div className='relative border border-white/20 rounded-full'>
-              {isSearchOpen ? (
-                <div className='absolute right-0 top-0 w-60 flex items-center'>
-                  <Input
-                    className='rounded-l-full bg-white/5 text-foreground border-white/20'
-                    placeholder='Buscar...'
-                    autoFocus
-                    onBlur={() => setIsSearchOpen(false)}
-                  />
-                  <Button
-                    variant='ghost'
-                    size='icon'
-                    className='rounded-l-none border-white/20'
-                    onClick={() => setIsSearchOpen(false)}
-                  >
-                    <X className='h-4 w-4 stroke-foreground' />
-                  </Button>
-                </div>
-              ) : (
+            {/* Language Switcher */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
                 <Button
                   variant='ghost'
                   size='icon'
-                  className='geo-card rounded-full'
-                  onClick={() => setIsSearchOpen(true)}
+                  className='border border-white/20 rounded-full geo-card'
                 >
-                  <Search className='h-5 w-5 stroke-foreground' />
+                  <Globe className='h-5 w-5 stroke-foreground' />
                 </Button>
-              )}
-            </div>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align='end' className='geo-card border-white/10 bg-background/70 backdrop-blur-lg text-foreground'>
+                <DropdownMenuItem asChild className='hover:bg-white/10'>
+                  <Link href="/" className='text-foreground'>
+                    English
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className='hover:bg-white/10'>
+                  <Link href="/es" className='text-foreground'>
+                    Español
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
 
             {/* Theme Toggle */}
             <Button
@@ -151,51 +150,10 @@ export default function Header() {
               )}
             </Button>
 
-            {/* Shopping Cart */}
-            <Button
-              variant='ghost'
-              size='icon'
-              className='relative border border-white/20 rounded-full geo-card'
-              asChild
-            >
-              <Link href='/carrito'>
-                <ShoppingCart className='h-5 w-5 stroke-foreground' />
-                {cartItemCount > 0 && (
-                  <Badge className='absolute -top-2 -right-2 px-1.5 py-0.5 text-xs bg-primary text-primary-foreground'>
-                    {cartItemCount}
-                  </Badge>
-                )}
-              </Link>
-            </Button>
-
-            {/* User Menu */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant='ghost'
-                  size='icon'
-                  className='border border-white/20 rounded-full geo-card'
-                >
-                  <User className='h-5 w-5 stroke-foreground' />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align='end' className='geo-card border-white/10 bg-background/70 backdrop-blur-lg text-foreground'>
-                <DropdownMenuItem asChild className='hover:bg-white/10'>
-                  <Link href='/login' className='text-foreground'>
-                    Iniciar sesión
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild className='hover:bg-white/10'>
-                  <Link href='/registro' className='text-foreground'>
-                    Registrarse
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
             {/* CTA Button */}
             <Button className='hidden sm:flex border border-white/20 bg-white/5 text-foreground rounded-full hover:bg-white/10 geo-card'>
-              Comprar ahora
+              <Mail className="h-4 w-4 mr-2" />
+              {isSpanish ? 'Contactar' : 'Contact Me'}
             </Button>
 
             {/* Mobile Menu */}
@@ -227,7 +185,8 @@ export default function Header() {
                   ))}
                   <SheetClose asChild>
                     <Button className='w-full border border-white/20 bg-white/5 text-foreground rounded-full hover:bg-white/10 geo-card'>
-                      Comprar ahora
+                      <Mail className="h-4 w-4 mr-2" />
+                      {isSpanish ? 'Contactar' : 'Contact Me'}
                     </Button>
                   </SheetClose>
                 </nav>

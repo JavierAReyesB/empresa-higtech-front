@@ -4,6 +4,7 @@ import { Pacifico } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 const pacifico = Pacifico({
   subsets: ["latin"],
@@ -94,6 +95,8 @@ export default function HeroSection({
 }) {
   const { theme } = useTheme();
   const [showBadge, setShowBadge] = useState(false);
+  const pathname = usePathname();
+  const isSpanish = pathname?.includes('/es');
 
   // Esperar a que todas las animaciones terminen y luego mostrar el badge
   useEffect(() => {
@@ -188,7 +191,9 @@ export default function HeroSection({
             animate="visible"
           >
             <p className="text-base sm:text-lg md:text-xl text-foreground/40 mb-8 leading-relaxed font-light tracking-wide max-w-xl mx-auto px-4">
-              Desarrollador web con enfoque en calidad, escalabilidad y detalle.
+              {isSpanish 
+                ? "Transformando desafíos empresariales en soluciones digitales exitosas."
+                : "Transforming business challenges into successful digital solutions."}
             </p>
           </motion.div>
 

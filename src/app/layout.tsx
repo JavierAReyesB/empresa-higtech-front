@@ -17,9 +17,9 @@ const dancingScript = Dancing_Script({
   variable: "--font-dancing",
 });
 export const metadata: Metadata = {
-  title: "HigTech - Soluciones Tecnológicas",
+  title: "Omar Somoza - Project Director & Technical Leader",
   description:
-    "Innovamos con tecnología para un mundo mejor. Creamos soluciones digitales que transforman empresas.",
+    "Project director and technical leader with a passion for transforming business challenges into successful digital solutions.",
 };
 
 // Split into client component and server layout
@@ -41,7 +41,7 @@ export default function RootLayout({
           attribute="class"
           defaultTheme="dark"
           enableSystem={false}
-          storageKey="higtech-theme"
+          storageKey="portfolio-theme"
         >
           <ClientLayout>
             <Header />
