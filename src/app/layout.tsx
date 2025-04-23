@@ -36,7 +36,7 @@ export default function RootLayout({
       className={`${pacifico.variable} ${dancingScript.variable}`}
       suppressHydrationWarning
     >
-      <body className="geo-bg antialiased">
+      <body className="">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
