@@ -88,7 +88,7 @@ export default function ClientLayout({
           height={140}
           rotate={12}
           gradient="from-[#e5c38c]/[0.40] dark:from-indigo-500/[0.05]"
-          className="left-[-30%] md:left-[-5%] top-[-10%] md:top-[20%]"
+          className="left-[-30%] md:left-[-15%] lg:left-[-5%] top-[-10%] md:top-[0%] lg:top-[20%]"
         />
         <ElegantShape
           delay={0.5}
@@ -96,7 +96,7 @@ export default function ClientLayout({
           height={120}
           rotate={-15}
           gradient="from-[#efdcb9]/[0.40] dark:from-rose-500/[0.05]"
-          className="right-[-25%] md:right-[0%] top-[95%] md:top-[75%]"
+          className="right-[-25%] md:right-[-20%] lg:right-[0%] top-[95%] md:top-[85%] lg:top-[75%]"
         />
         <ElegantShape
           delay={0.4}
@@ -104,7 +104,7 @@ export default function ClientLayout({
           height={80}
           rotate={-8}
           gradient="from-[#e5c38c]/[0.35] dark:from-violet-500/[0.05]"
-          className="left-[-25%] md:left-[10%] bottom-[35%] md:bottom-[10%]"
+          className="left-[-25%] md:left-[-18%] lg:left-[10%] bottom-[35%] md:bottom-[45%] lg:bottom-[10%]"
         />
         <ElegantShape
           delay={0.6}
@@ -112,7 +112,7 @@ export default function ClientLayout({
           height={60}
           rotate={20}
           gradient="from-[#824a2a]/[0.30] dark:from-amber-500/[0.05]"
-          className="right-[-25%] md:right-[20%] top-[45%] md:top-[15%]"
+          className="right-[-25%] md:right-[-15%] lg:right-[20%] top-[45%] md:top-[25%] lg:top-[15%]"
         />
         <ElegantShape
           delay={0.7}
@@ -120,7 +120,7 @@ export default function ClientLayout({
           height={40}
           rotate={-25}
           gradient="from-[#693e25]/[0.35] dark:from-cyan-500/[0.05]"
-          className="left-[60%] md:left-[25%] top-[60%] md:top-[10%]"
+          className="left-[60%] md:left-[50%] lg:left-[25%] top-[60%] md:top-[65%] lg:top-[10%]"
         />
       </div>
       
