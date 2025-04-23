@@ -335,7 +335,7 @@ export default function HeroSection({
     }),
   };
   return (
-    <div className="relative h-[100vh] max-h-[800px] w-full flex items-center justify-center">
+    <div className="relative h-[100vh] md:h-[100vh] max-h-[800px] md:max-h-none w-full flex items-center justify-center">
       {/* Background Video (Mobile only) */}
       <video
         autoPlay
