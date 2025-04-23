@@ -336,17 +336,23 @@ export default function HeroSection({
   };
   return (
     <div className="relative h-[100vh] max-h-[800px] w-full flex items-center justify-center">
-      {/* Background Video */}
+      {/* Background Video (Mobile only) */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover object-[center_30%] z-0"
+        className="absolute inset-0 w-full h-full object-cover object-[center_30%] z-0 md:hidden"
         poster="/images/pfOmar.jpg"
       >
         <source src="/videos/omar-presentation.mp4" type="video/mp4" />
       </video>
+      {/* Background Image (Desktop only) */}
+      <img
+        src="/images/pfOmar.jpg"
+        alt="Omar Somoza"
+        className="absolute inset-0 w-full h-full object-cover object-[center_30%] z-0 hidden md:block"
+      />
       <div className="absolute inset-0 bg-black/60 z-[1]" /> {/* Dark overlay */}
       
       <div className="absolute inset-0 z-[2]">
