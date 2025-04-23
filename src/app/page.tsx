@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { HeroSection } from "@/components/hero-section";
 import { AboutSection } from "@/components/about-section";
 import { ServicesSection } from "@/components/services-section";
+import AISection from "@/components/ai-section";
 import { TestimonialsSection } from "@/components/testimonials-section";
 import { usePathname } from "next/navigation";
 
@@ -59,6 +60,17 @@ export default function Home() {
         className="mb-20"
       >
         <ServicesSection />
+      </motion.div>
+
+      {/* AI Section */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={sectionVariants}
+        className="mb-20"
+      >
+        <AISection />
       </motion.div>
 
       {/* Testimonials Section */}

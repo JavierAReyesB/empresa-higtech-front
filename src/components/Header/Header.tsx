@@ -52,6 +52,7 @@ export default function Header() {
         { name: "Inicio", href: isSpanish ? "/es" : "/" },
         { name: "Servicios", href: "#servicios" },
         { name: "Proyectos", href: "#proyectos" },
+        { name: "AI", href: "#AiSection" },
         // { name: 'Testimonios', href: '#testimonios' },
         { name: "Contacto", href: "#contacto" },
       ]
@@ -59,6 +60,8 @@ export default function Header() {
         { name: "Home", href: isSpanish ? "/es" : "/" },
         { name: "Services", href: "#servicios" },
         { name: "Projects", href: "#proyectos" },
+        { name: "AI", href: "#AiSection" },
+
         // { name: 'Testimonials', href: '#testimonios' },
         { name: "Contact", href: "#contacto" },
       ];
