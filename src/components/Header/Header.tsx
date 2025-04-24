@@ -107,7 +107,7 @@ export default function Header() {
             className="flex items-center border border-white/20 rounded-full p-2 geo-card"
           >
             <span className="text-xl font-bold text-foreground">
-              Omar Somoza
+              Javier Reyes
             </span>
           </Link>
 

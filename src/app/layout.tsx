@@ -17,7 +17,7 @@ const dancingScript = Dancing_Script({
   variable: "--font-dancing",
 });
 export const metadata: Metadata = {
-  title: "Omar Somoza - Project Director & Technical Leader",
+  title: "Javier Reyes - Project Director & Technical Leader",
   description:
     "Project director and technical leader with a passion for transforming business challenges into successful digital solutions.",
 };

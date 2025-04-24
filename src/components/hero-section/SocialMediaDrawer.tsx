@@ -1,6 +1,6 @@
 /**
  * SocialMediaDrawer Component
- * 
+ *
  * A modal drawer component that displays social media profiles and content
  * within an iPhone-like mobile frame. Supports different types of social
  * media layouts including Instagram, LinkedIn, and custom displays.
@@ -139,7 +139,7 @@ const SocialMediaDrawer = ({
                       </div>
                       <div className="pt-10 pb-3">
                         <h3 className="text-black font-bold text-lg">
-                          Omar Somoza
+                          Javier Reyes
                         </h3>
                         <p className="text-gray-600 text-xs">
                           Project Director & Technical Leader

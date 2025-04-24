@@ -30,7 +30,7 @@ export default function Home() {
       {/* Hero Section */}
       <div className="mb-20">
         <HeroSection
-          badge="Omar Somoza"
+          badge="Javier Reyes"
           title1={isSpanish ? "Director de" : "Project"}
           title2={
             isSpanish

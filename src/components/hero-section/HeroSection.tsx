@@ -27,7 +27,7 @@ const pacifico = Pacifico({
 });
 
 export default function HeroSection({
-  badge = "Omar Somoza",
+  badge = "Javier Reyes",
   title1 = "Soluciones",
   title2 = "digitales eficientes",
 }: {
@@ -71,7 +71,8 @@ export default function HeroSection({
 
   // Use the geo-text-gradient class for all initial renders to prevent hydration mismatch
   // Only switch to theme-conditional classes after client-side mounting
-  const titleClassName = mounted && theme === "light" ? "geo-hero-title" : "geo-text-gradient";
+  const titleClassName =
+    mounted && theme === "light" ? "geo-hero-title" : "geo-text-gradient";
 
   return (
     <div className="relative h-[100vh] md:h-[100vh] max-h-[800px] md:max-h-none w-full flex items-center justify-center">
@@ -82,14 +83,14 @@ export default function HeroSection({
         muted
         playsInline
         className="absolute inset-0 w-full h-full object-cover object-[center_30%] z-0 md:hidden"
-        poster="/images/pfOmar.jpg"
+        poster="/images/javi_test.png"
       >
         <source src="/videos/omar-presentation.mp4" type="video/mp4" />
       </video>
       {/* Background Image (Desktop only) */}
       <img
-        src="/images/pfOmar.jpg"
-        alt="Omar Somoza"
+        src="/images/javi_test.png"
+        alt="Javier Reyes"
         className="absolute inset-0 w-full h-full object-cover object-[center_30%] z-0 hidden md:block"
       />
       <div className="absolute inset-0 bg-black/60 z-[1]" />{" "}
@@ -162,10 +163,7 @@ export default function HeroSection({
 
               {/* Using the same class for server and client initial render */}
               <div
-                className={cn(
-                  "text-lg sm:text-xl md:text-5xl",
-                  titleClassName
-                )}
+                className={cn("text-lg sm:text-xl md:text-5xl", titleClassName)}
               >
                 {title2}
               </div>
@@ -205,7 +203,7 @@ export default function HeroSection({
             <div className="flex justify-center space-x-4 mb-8">
               <SocialMediaDrawer
                 title="LinkedIn"
-                description="Perfil profesional de Omar Somoza"
+                description="Perfil profesional de Javier Reyes"
                 url="https://www.linkedin.com/in/omar-somoza-230b71228"
                 icon={<Linkedin size={20} className="text-foreground/60" />}
                 type="linkedin"
@@ -213,7 +211,7 @@ export default function HeroSection({
 
               <SocialMediaDrawer
                 title="Instagram"
-                description="Cuenta personal de Omar Somoza"
+                description="Cuenta personal de Javier Reyes"
                 url="https://www.instagram.com/omarsomoza1/"
                 icon={<Instagram size={20} className="text-foreground/60" />}
                 type="instagram"
@@ -221,7 +219,7 @@ export default function HeroSection({
 
               <SocialMediaDrawer
                 title="Avanzadi"
-                description="Empresa de desarrollo de software fundada por Omar Somoza"
+                description="Empresa de desarrollo de software fundada por Javier Reyes"
                 url="https://www.avanzadi.com/"
                 icon={
                   <span className="text-foreground/60 text-sm font-medium px-2">

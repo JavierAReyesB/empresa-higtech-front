@@ -226,11 +226,11 @@ export default function Footer() {
                   <span>Avanzadi</span>
                 </a>
                 <a
-                  href="mailto:omar.somoza@example.com"
+                  href="mailto:javier.reyes@example.com"
                   className="flex items-center space-x-2 text-foreground/60 hover:text-primary transition-colors"
                 >
                   <Mail size={18} />
-                  <span>omar.somoza@example.com</span>
+                  <span>javier.reyes@example.com</span>
                 </a>
               </div>
             </div>
@@ -242,7 +242,7 @@ export default function Footer() {
         {/* Bottom Footer */}
         <div className="flex flex-col items-center justify-between space-y-4 text-center text-sm text-muted-foreground md:flex-row md:space-y-0 md:text-left">
           <div>
-            © {currentYear} Omar Somoza.{" "}
+            © {currentYear} Javier Reyes.{" "}
             {isSpanish
               ? "Todos los derechos reservados."
               : "All rights reserved."}
