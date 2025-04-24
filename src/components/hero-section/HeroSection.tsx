@@ -83,13 +83,13 @@ export default function HeroSection({
         muted
         playsInline
         className="absolute inset-0 w-full h-full object-cover object-[center_30%] z-0 md:hidden"
-        poster="/images/javi_test.png"
+        poster="/images/javi_traje.png"
       >
         <source src="/videos/omar-presentation.mp4" type="video/mp4" />
       </video>
       {/* Background Image (Desktop only) */}
       <img
-        src="/images/javi_test.png"
+        src="/images/javi_polonia.jpeg"
         alt="Javier Reyes"
         className="absolute inset-0 w-full h-full object-cover object-[center_30%] z-0 hidden md:block"
       />
