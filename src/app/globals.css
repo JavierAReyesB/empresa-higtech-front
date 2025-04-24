@@ -138,12 +138,20 @@
     @apply bg-[#faf4e8];
     @apply before:from-[#e5c38c]/[0.30] before:via-transparent before:to-[#efdcb9]/[0.30];
   }
+
   .geo-text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-800 via-white/80 to-rose-700;
   }
+
   .light .geo-text-gradient,
   html[class="light"] .geo-text-gradient {
     @apply from-[#693e25] via-[#381e12] to-[#824a2a];
+  }
+
+  /* NUEVA CLASE para el título del Hero en modo claro */
+  .light .geo-hero-title,
+  html[class="light"] .geo-hero-title {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#381e12] via-[#b7774c] to-[#693e25];
   }
 
   .geo-card {

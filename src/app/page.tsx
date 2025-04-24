@@ -5,7 +5,7 @@ import { HeroSection } from "@/components/hero-section";
 import { AboutSection } from "@/components/about-section";
 import { ServicesSection } from "@/components/services-section";
 import AISection from "@/components/ai-section";
-import { TestimonialsSection } from "@/components/testimonials-section";
+// import { TestimonialsSection } from "@/components/testimonials-section";
 import { usePathname } from "next/navigation";
 
 // Animation variants for sections

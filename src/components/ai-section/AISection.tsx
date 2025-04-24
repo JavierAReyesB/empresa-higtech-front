@@ -118,7 +118,7 @@ export default function AISection() {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 tracking-tight">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-violet-600 to-rose-600 dark:from-indigo-400 dark:via-violet-400 dark:to-rose-400">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#d9a27c] via-[#b57a5a] to-[#e0b295] dark:from-[#c88c6a] dark:via-[#a96c4f] dark:to-[#dba580]">
                 IA, Agentes y Automatización
               </span>
             </h2>
