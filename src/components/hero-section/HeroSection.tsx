@@ -1,6 +1,6 @@
 /**
  * HeroSection Component
- * 
+ *
  * The main landing section featuring responsive design with animated text,
  * elegant shape elements, social media integration, and video presentation.
  */
@@ -14,7 +14,7 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Linkedin, Instagram, ExternalLink, PlayCircle } from "lucide-react";
 import VideoPlayer from "../VideoPlayer";
-
+import { cn } from "@/lib/utils";
 // Import the extracted components
 import TypewriterText from "./TypewriterText";
 import ElegantShape from "./ElegantShape";
@@ -35,11 +35,12 @@ export default function HeroSection({
   title1?: string;
   title2?: string;
 }) {
-  const { theme } = useTheme();
+  const { theme, resolvedTheme } = useTheme();
   const [showBadge, setShowBadge] = useState(false);
   const [showVideoModal, setShowVideoModal] = useState(false);
   const pathname = usePathname();
   const isSpanish = pathname?.includes("/es");
+  const [mounted, setMounted] = useState(false);
 
   // Wait for all animations to finish and then show the badge
   useEffect(() => {
@@ -48,6 +49,11 @@ export default function HeroSection({
     }, 1000); // 4 seconds total to wait for all animations (including loader)
 
     return () => clearTimeout(timer);
+  }, []);
+
+  // Only enable client-side theme detection after hydration to prevent mismatch
+  useEffect(() => {
+    setMounted(true);
   }, []);
 
   const fadeUpVariants = {
@@ -62,7 +68,11 @@ export default function HeroSection({
       },
     }),
   };
-  
+
+  // Use the geo-text-gradient class for all initial renders to prevent hydration mismatch
+  // Only switch to theme-conditional classes after client-side mounting
+  const titleClassName = mounted && theme === "light" ? "geo-hero-title" : "geo-text-gradient";
+
   return (
     <div className="relative h-[100vh] md:h-[100vh] max-h-[800px] md:max-h-none w-full flex items-center justify-center">
       {/* Background Video (Mobile only) */}
@@ -82,7 +92,8 @@ export default function HeroSection({
         alt="Omar Somoza"
         className="absolute inset-0 w-full h-full object-cover object-[center_30%] z-0 hidden md:block"
       />
-      <div className="absolute inset-0 bg-black/60 z-[1]" /> {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/60 z-[1]" />{" "}
+      {/* Dark overlay */}
       <div className="absolute inset-0 z-[2]">
         <ElegantShape
           delay={0.3}
@@ -139,8 +150,23 @@ export default function HeroSection({
           )}
           <motion.div custom={0} initial="hidden" animate="visible">
             <h1 className="text-xl sm:text-xl md:text-8xl font-bold mb-6 md:mb-8 tracking-tight">
-              <div className="geo-text-gradient">{title1}</div>
-              <div className="geo-text-gradient text-lg sm:text-xl md:text-5xl">
+              {/* Using the same class for server and client initial render */}
+              <div
+                className={cn(
+                  "text-4xl sm:text-5xl md:text-8xl font-bold",
+                  titleClassName
+                )}
+              >
+                {title1}
+              </div>
+
+              {/* Using the same class for server and client initial render */}
+              <div
+                className={cn(
+                  "text-lg sm:text-xl md:text-5xl",
+                  titleClassName
+                )}
+              >
                 {title2}
               </div>
             </h1>
