@@ -4,11 +4,16 @@ import { motion } from 'framer-motion'
 import { useTheme } from 'next-themes'
 import { usePathname } from 'next/navigation'
 import { Star, Building, Briefcase, Award, Activity } from 'lucide-react'
+import { useProfile } from '@/lib/hooks/useProfile'
 
 export default function TestimonialsSection() {
   const { theme } = useTheme()
   const pathname = usePathname()
   const isSpanish = pathname?.includes('/es')
+  
+  // Get profile data from resources
+  const { data: profile } = useProfile()
+  const testimonialsData = profile.testimonials
   
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -34,36 +39,7 @@ export default function TestimonialsSection() {
     }
   }
 
-  // Testimonios/palabras sobre Omar
-  const testimonials = isSpanish ? [
-    {
-      text: "Omar transformó nuestro enfoque digital con una combinación perfecta de liderazgo estratégico y experticia técnica. Su capacidad para entender problemas complejos y traducirlos en soluciones viables fue invaluable.",
-      author: "María García",
-      company: "CTO, FinTech Innovación",
-      stars: 5
-    },
-    {
-      text: "Trabajar con Omar significó tener un socio que realmente entendió nuestras necesidades. Su enfoque estratégico y su capacidad para llevar proyectos a buen término ha sido clave para el éxito de nuestras iniciativas digitales.",
-      author: "Carlos Mendoza",
-      company: "Director Digital, Grupo Logística+",
-      stars: 5
-    }
-  ] : [
-    {
-      text: "Omar transformed our digital approach with a perfect combination of strategic leadership and technical expertise. His ability to understand complex problems and translate them into viable solutions was invaluable.",
-      author: "Maria Garcia",
-      company: "CTO, FinTech Innovation",
-      stars: 5
-    },
-    {
-      text: "Working with Omar meant having a partner who truly understood our needs. His strategic approach and ability to successfully deliver projects has been key to the success of our digital initiatives.",
-      author: "Carlos Mendoza",
-      company: "Digital Director, Logistics+ Group",
-      stars: 5
-    }
-  ];
-
-  // Casos de éxito / Highlights
+  // Project highlights - These could also be moved to the resource files
   const projectHighlights = isSpanish ? [
     {
       icon: <Building className="h-5 w-5 text-cyan-400" />,
@@ -126,7 +102,7 @@ export default function TestimonialsSection() {
 
   return (
     <section id="testimonios" className='py-24 px-8 backdrop-blur-sm mx-4 my-8 mb-16 border border-white/10 rounded-xl geo-card'>
-      {/* Sección de casos de éxito / Project Highlights */}
+      {/* Project Highlights Section */}
       <motion.h2 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -192,7 +168,7 @@ export default function TestimonialsSection() {
         ))}
       </motion.div>
       
-      {/* Sección de testimonios */}
+      {/* Testimonials Section */}
       <motion.h2 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -200,7 +176,7 @@ export default function TestimonialsSection() {
         transition={{ duration: 0.7 }}
         className='text-3xl md:text-4xl font-bold mb-10 text-center geo-text-gradient'
       >
-        {isSpanish ? 'Palabras Sobre Mí' : 'What They Say'}
+        {testimonialsData.title}
       </motion.h2>
       
       <motion.div 
@@ -210,7 +186,7 @@ export default function TestimonialsSection() {
         viewport={{ once: true }}
         className='grid md:grid-cols-2 gap-8 max-w-4xl mx-auto'
       >
-        {testimonials.map((testimonial, index) => (
+        {testimonialsData.items.map((testimonial, index) => (
           <motion.div 
             key={index}
             variants={itemVariants}
@@ -218,7 +194,7 @@ export default function TestimonialsSection() {
             className='p-8 backdrop-blur-sm rounded-xl border border-white/10 geo-card hover:border-white/20 transition-all'
           >
             <div className="flex mb-4">
-              {[...Array(testimonial.stars)].map((_, i) => (
+              {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-5 w-5 fill-amber-400 text-amber-400" />
               ))}
             </div>
@@ -229,11 +205,11 @@ export default function TestimonialsSection() {
             
             <div className="flex items-center">
               <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-400 to-violet-500 flex items-center justify-center text-white font-bold text-lg">
-                {testimonial.author.charAt(0)}
+                {testimonial.name.charAt(0)}
               </div>
               <div className="ml-4">
                 <h3 className='text-lg font-semibold text-foreground'>
-                  {testimonial.author}
+                  {testimonial.name}
                 </h3>
                 <p className="text-foreground/60 text-sm">{testimonial.company}</p>
               </div>
@@ -250,9 +226,7 @@ export default function TestimonialsSection() {
         className="mt-16 text-center"
       >
         <p className="text-xl md:text-2xl font-light text-foreground/50 max-w-2xl mx-auto">
-          {isSpanish
-            ? "Creo en el poder de la tecnología bien dirigida para cambiar empresas y vidas."
-            : "I believe in the power of well-directed technology to change businesses and lives."}
+          {testimonialsData.description}
         </p>
       </motion.div>
     </section>

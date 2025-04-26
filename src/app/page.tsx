@@ -5,8 +5,9 @@ import { HeroSection } from "@/components/hero-section";
 import { AboutSection } from "@/components/about-section";
 import { ServicesSection } from "@/components/services-section";
 import AISection from "@/components/ai-section";
-// import { TestimonialsSection } from "@/components/testimonials-section";
+import { TestimonialsSection } from "@/components/testimonials-section";
 import { usePathname } from "next/navigation";
+import { useProfile } from "@/lib/hooks/useProfile";
 
 // Animation variants for sections
 const sectionVariants = {
@@ -24,20 +25,15 @@ const sectionVariants = {
 export default function Home() {
   const pathname = usePathname();
   const isSpanish = pathname?.includes("/es");
+  
+  // Get profile data
+  const { data: profile } = useProfile();
 
   return (
     <main className="flex flex-col min-h-screen overflow-visible bg-transparent text-white">
       {/* Hero Section */}
       <div className="mb-20">
-        <HeroSection
-          badge="Javier Reyes"
-          title1={isSpanish ? "Director de" : "Project"}
-          title2={
-            isSpanish
-              ? "Proyectos & Líder Técnico"
-              : "Director & Technical Leader"
-          }
-        />
+        <HeroSection />
       </div>
 
       {/* About Section */}
@@ -81,7 +77,7 @@ export default function Home() {
         variants={sectionVariants}
         className="mb-20"
       >
-        {/* <TestimonialsSection /> */}
+        <TestimonialsSection />
       </motion.div>
     </main>
   );

@@ -30,12 +30,16 @@ import {
 } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
+import { useProfile } from "@/lib/hooks/useProfile";
 
 export default function Header() {
   const { resolvedTheme, setTheme } = useTheme();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
+  
+  // Get profile data
+  const { data: profile, profileType } = useProfile();
 
   const isSpanish = pathname?.includes("/es");
 
@@ -107,7 +111,7 @@ export default function Header() {
             className="flex items-center border border-white/20 rounded-full p-2 geo-card"
           >
             <span className="text-xl font-bold text-foreground">
-              Javier Reyes
+              {profile.name}
             </span>
           </Link>
 
@@ -128,6 +132,38 @@ export default function Header() {
 
           {/* Right side items */}
           <div className="flex items-center space-x-2">
+            {/* Profile Switcher */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <div className="border border-white/20 rounded-full geo-card flex items-center justify-center w-9 h-9 cursor-pointer hover:bg-white/5 transition-colors">
+                  <User className="h-5 w-5 stroke-foreground" />
+                </div>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                align="end"
+                className="geo-card border-white/10 bg-background/70 backdrop-blur-lg text-foreground"
+              >
+                <DropdownMenuItem
+                  onClick={() => {
+                    window.localStorage.setItem('profile-config', 'OMAR');
+                    window.location.reload();
+                  }}
+                  className={`hover:bg-white/10 cursor-pointer ${profileType === 'OMAR' ? 'bg-white/10' : ''}`}
+                >
+                  Omar Profile
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => {
+                    window.localStorage.setItem('profile-config', 'JAVIER');
+                    window.location.reload();
+                  }}
+                  className={`hover:bg-white/10 cursor-pointer ${profileType === 'JAVIER' ? 'bg-white/10' : ''}`}
+                >
+                  Javier Profile
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             {/* Language Switcher */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>

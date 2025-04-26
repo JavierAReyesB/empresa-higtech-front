@@ -1,7 +1,6 @@
 "use client";
 
 import type React from "react";
-
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -10,7 +9,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Globe } from "lucide-react";
-
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import {
@@ -26,6 +24,7 @@ import {
   ChevronUp,
   Instagram,
 } from "lucide-react";
+import { useProfile } from "@/lib/hooks/useProfile";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -35,6 +34,10 @@ export default function Footer() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  
+  // Get profile data from resources
+  const { data: profile } = useProfile();
+  const footerData = profile.footer;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -199,7 +202,7 @@ export default function Footer() {
               {/* Social links and direct contact */}
               <div className="flex flex-wrap justify-center gap-6 mt-8">
                 <a
-                  href="https://www.linkedin.com/in/omar-somoza-230b71228"
+                  href={footerData.socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 text-foreground/60 hover:text-primary transition-colors"
@@ -208,7 +211,7 @@ export default function Footer() {
                   <span>LinkedIn</span>
                 </a>
                 <a
-                  href="https://www.instagram.com/omarsomoza1/"
+                  href={footerData.socialLinks.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 text-foreground/60 hover:text-primary transition-colors"
@@ -226,11 +229,11 @@ export default function Footer() {
                   <span>Avanzadi</span>
                 </a>
                 <a
-                  href="mailto:javier.reyes@example.com"
+                  href={`mailto:${footerData.contactEmail}`}
                   className="flex items-center space-x-2 text-foreground/60 hover:text-primary transition-colors"
                 >
                   <Mail size={18} />
-                  <span>javier.reyes@example.com</span>
+                  <span>{footerData.contactEmail}</span>
                 </a>
               </div>
             </div>
@@ -242,10 +245,7 @@ export default function Footer() {
         {/* Bottom Footer */}
         <div className="flex flex-col items-center justify-between space-y-4 text-center text-sm text-muted-foreground md:flex-row md:space-y-0 md:text-left">
           <div>
-            © {currentYear} Javier Reyes.{" "}
-            {isSpanish
-              ? "Todos los derechos reservados."
-              : "All rights reserved."}
+            {footerData.copyright}
           </div>
           <div className="text-sm font-light italic text-foreground/50">
             {isSpanish

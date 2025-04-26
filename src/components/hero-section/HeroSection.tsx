@@ -19,6 +19,8 @@ import { cn } from "@/lib/utils";
 import TypewriterText from "./TypewriterText";
 import ElegantShape from "./ElegantShape";
 import SocialMediaDrawer from "./SocialMediaDrawer";
+// Import the profile hook
+import { useProfile } from "@/lib/hooks/useProfile";
 
 const pacifico = Pacifico({
   subsets: ["latin"],
@@ -27,9 +29,9 @@ const pacifico = Pacifico({
 });
 
 export default function HeroSection({
-  badge = "Javier Reyes",
-  title1 = "Soluciones",
-  title2 = "digitales eficientes",
+  badge,
+  title1,
+  title2,
 }: {
   badge?: string;
   title1?: string;
@@ -41,6 +43,9 @@ export default function HeroSection({
   const pathname = usePathname();
   const isSpanish = pathname?.includes("/es");
   const [mounted, setMounted] = useState(false);
+  
+  // Get profile data from resources
+  const { data: profile } = useProfile();
 
   // Wait for all animations to finish and then show the badge
   useEffect(() => {
@@ -74,6 +79,13 @@ export default function HeroSection({
   const titleClassName =
     mounted && theme === "light" ? "geo-hero-title" : "geo-text-gradient";
 
+  // Get text content from profile resources
+  const name = profile.name;
+  const heroData = profile.hero;
+  const displayBadge = badge || name;
+  const displayTitle1 = title1 || "Soluciones";
+  const displayTitle2 = title2 || "digitales eficientes";
+
   return (
     <div className="relative h-[100vh] md:h-[100vh] max-h-[800px] md:max-h-none w-full flex items-center justify-center">
       {/* Background Video (Mobile only) */}
@@ -83,14 +95,14 @@ export default function HeroSection({
         muted
         playsInline
         className="absolute inset-0 w-full h-full object-cover object-[center_30%] z-0 md:hidden"
-        poster="/images/javi_traje.png"
+        poster={profile.profileImage}
       >
-        <source src="/videos/omar-presentation.mp4" type="video/mp4" />
+        <source src={profile.videoPresentation} type="video/mp4" />
       </video>
       {/* Background Image (Desktop only) */}
       <img
-        src="/images/javi_polonia.jpeg"
-        alt="Javier Reyes"
+        src={profile.profileImage2}
+        alt={profile.name}
         className="absolute inset-0 w-full h-full object-cover object-[center_30%] z-0 hidden md:block"
       />
       <div className="absolute inset-0 bg-black/60 z-[1]" />{" "}
@@ -146,7 +158,7 @@ export default function HeroSection({
               transition={{ duration: 0.1, ease: "easeOut" }}
               className="inline-flex items-center gap-2 px-3 py-1 mb-8 md:mb-12"
             >
-              <TypewriterText text={badge} />
+              <TypewriterText text={displayBadge} />
             </motion.div>
           )}
           <motion.div custom={0} initial="hidden" animate="visible">
@@ -158,14 +170,14 @@ export default function HeroSection({
                   titleClassName
                 )}
               >
-                {title1}
+                {heroData.greeting}
               </div>
 
               {/* Using the same class for server and client initial render */}
               <div
                 className={cn("text-lg sm:text-xl md:text-5xl", titleClassName)}
               >
-                {title2}
+                {heroData.title}
               </div>
             </h1>
           </motion.div>
@@ -176,12 +188,10 @@ export default function HeroSection({
             animate="visible"
           >
             <p className="text-base sm:text-lg md:text-xl mb-2 leading-relaxed font-light tracking-wide max-w-xl mx-auto px-4">
-              {isSpanish
-                ? "Transformando desafíos empresariales en soluciones digitales exitosas."
-                : "Transforming business challenges into successful digital solutions."}
+              {heroData.description}
             </p>
             <p className="text-sm sm:text-base text-foreground/30 mb-5 font-light tracking-wide max-w-xl mx-auto px-4">
-              {isSpanish ? "Fundador de Avanzadi" : "Founder at Avanzadi"}
+              {heroData.subtitle}
             </p>
 
             {/* Video Button */}
@@ -203,23 +213,23 @@ export default function HeroSection({
             <div className="flex justify-center space-x-4 mb-8">
               <SocialMediaDrawer
                 title="LinkedIn"
-                description="Perfil profesional de Javier Reyes"
-                url="https://www.linkedin.com/in/omar-somoza-230b71228"
+                description={`Perfil profesional de ${profile.name}`}
+                url={profile.footer.socialLinks.linkedin}
                 icon={<Linkedin size={20} className="text-foreground/60" />}
                 type="linkedin"
               />
 
               <SocialMediaDrawer
                 title="Instagram"
-                description="Cuenta personal de Javier Reyes"
-                url="https://www.instagram.com/omarsomoza1/"
+                description={`Cuenta personal de ${profile.name}`}
+                url="https://www.instagram.com/"
                 icon={<Instagram size={20} className="text-foreground/60" />}
                 type="instagram"
               />
 
               <SocialMediaDrawer
                 title="Avanzadi"
-                description="Empresa de desarrollo de software fundada por Javier Reyes"
+                description={`Empresa de desarrollo de software fundada por ${profile.name}`}
                 url="https://www.avanzadi.com/"
                 icon={
                   <span className="text-foreground/60 text-sm font-medium px-2">
@@ -268,7 +278,7 @@ export default function HeroSection({
       <VideoPlayer
         isOpen={showVideoModal}
         onClose={() => setShowVideoModal(false)}
-        videoSrc="/videos/omar-presentation.mp4"
+        videoSrc={profile.videoPresentation}
       />
     </div>
   );

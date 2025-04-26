@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import { Dancing_Script } from "next/font/google";
+import { PROFILE_CONFIG } from "@/lib/config";
 
 const pacifico = Pacifico({
   subsets: ["latin"],
@@ -16,10 +17,15 @@ const dancingScript = Dancing_Script({
   weight: ["400", "600"],
   variable: "--font-dancing",
 });
+
+// Dynamic metadata based on current profile
 export const metadata: Metadata = {
-  title: "Javier Reyes - Project Director & Technical Leader",
-  description:
-    "Project director and technical leader with a passion for transforming business challenges into successful digital solutions.",
+  title: PROFILE_CONFIG.CURRENT_PROFILE === "OMAR" 
+    ? "Omar Somoza - Senior Software Engineer" 
+    : "Javier Reyes - Project Director & Technical Leader",
+  description: PROFILE_CONFIG.CURRENT_PROFILE === "OMAR"
+    ? "Senior software engineer with expertise in web development and AI integration"
+    : "Project director and technical leader with a passion for transforming business challenges into successful digital solutions.",
 };
 
 // Split into client component and server layout

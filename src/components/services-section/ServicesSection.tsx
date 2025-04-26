@@ -4,11 +4,16 @@ import { motion } from 'framer-motion'
 import { useTheme } from 'next-themes'
 import { usePathname } from 'next/navigation'
 import { Monitor, LineChart, Lightbulb, MessageCircle } from 'lucide-react'
+import { useProfile } from '@/lib/hooks/useProfile'
 
 export default function ServicesSection() {
   const { theme } = useTheme()
   const pathname = usePathname()
   const isSpanish = pathname?.includes('/es')
+  
+  // Get profile data from resources
+  const { data: profile } = useProfile()
+  const servicesData = profile.services
   
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -33,44 +38,16 @@ export default function ServicesSection() {
     }
   }
 
-  const services = [
-    {
-      icon: <Monitor className="h-8 w-8 text-indigo-400" />,
-      title: isSpanish ? "Dirección de Proyectos" : "Project Management",
-      description: isSpanish 
-        ? "Planificación, ejecución y entrega de proyectos digitales con metodologías ágiles, garantizando resultados de alta calidad dentro del tiempo y presupuesto." 
-        : "Planning, execution, and delivery of digital projects using agile methodologies, ensuring high-quality results within time and budget constraints.",
-      color: "indigo",
-      href: "#"
-    },
-    {
-      icon: <LineChart className="h-8 w-8 text-rose-400" />,
-      title: isSpanish ? "Liderazgo Técnico" : "Technical Leadership",
-      description: isSpanish 
-        ? "Guía estratégica para equipos de desarrollo, estableciendo estándares técnicos, arquitecturas escalables y prácticas de código que garantizan soluciones robustas." 
-        : "Strategic guidance for development teams, establishing technical standards, scalable architectures, and coding practices that ensure robust solutions.",
-      color: "rose",
-      href: "#"
-    },
-    {
-      icon: <Lightbulb className="h-8 w-8 text-amber-400" />,
-      title: isSpanish ? "Estrategia Digital" : "Digital Strategy",
-      description: isSpanish 
-        ? "Desarrollo de estrategias digitales alineadas con objetivos de negocio, identificando oportunidades de transformación con impacto medible en resultados." 
-        : "Development of digital strategies aligned with business objectives, identifying transformation opportunities with measurable impact on results.",
-      color: "amber",
-      href: "#"
-    },
-    {
-      icon: <MessageCircle className="h-8 w-8 text-emerald-400" />,
-      title: isSpanish ? "Mentoría" : "Mentoring",
-      description: isSpanish 
-        ? "Acompañamiento profesional para líderes técnicos y gestores de proyecto, compartiendo conocimientos y mejores prácticas para potenciar su desarrollo." 
-        : "Professional guidance for technical leaders and project managers, sharing knowledge and best practices to enhance their development.",
-      color: "emerald",
-      href: "#"
-    }
+  // Map service items to icons
+  const serviceIcons = [
+    <Monitor key="monitor" className="h-8 w-8 text-indigo-400" />,
+    <LineChart key="linechart" className="h-8 w-8 text-rose-400" />,
+    <Lightbulb key="lightbulb" className="h-8 w-8 text-amber-400" />,
+    <MessageCircle key="message" className="h-8 w-8 text-emerald-400" />
   ]
+  
+  // Map service items to colors
+  const serviceColors = ["indigo", "rose", "amber", "emerald"]
 
   return (
     <section id="servicios" className='py-24 px-8 backdrop-blur-sm mx-4 my-8 border border-white/10 rounded-xl geo-card'>
@@ -82,7 +59,7 @@ export default function ServicesSection() {
           transition={{ duration: 0.7 }}
           className='text-4xl md:text-5xl font-bold mb-10 text-center geo-text-gradient'
         >
-          {isSpanish ? 'Mis Servicios' : 'What I Do'}
+          {servicesData.title}
         </motion.h2>
         
         <motion.div 
@@ -92,15 +69,15 @@ export default function ServicesSection() {
           viewport={{ once: true }}
           className='grid md:grid-cols-2 lg:grid-cols-4 gap-8'
         >
-          {services.map((service, index) => (
+          {servicesData.items.map((service, index) => (
             <motion.div 
               key={index}
               variants={itemVariants}
               className={`p-8 backdrop-blur-sm rounded-xl border border-white/10 geo-card hover:border-white/20 transition-all duration-300`}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
-              <div className={`mb-6 inline-flex items-center justify-center w-16 h-16 rounded-full bg-${service.color}-500/10 border border-${service.color}-500/20`}>
-                {service.icon}
+              <div className={`mb-6 inline-flex items-center justify-center w-16 h-16 rounded-full bg-${serviceColors[index % serviceColors.length]}-500/10 border border-${serviceColors[index % serviceColors.length]}-500/20`}>
+                {serviceIcons[index % serviceIcons.length]}
               </div>
               <h3 className='text-2xl font-semibold mb-4 text-foreground'>
                 {service.title}
@@ -119,9 +96,7 @@ export default function ServicesSection() {
           transition={{ duration: 0.7, delay: 0.5 }}
           className="text-center mt-12 text-foreground/50 text-lg font-light italic"
         >
-          {isSpanish 
-            ? "Disponible para colaboraciones estratégicas y asesorías."
-            : "Available for strategic collaborations and advisory roles."}
+          {servicesData.description}
         </motion.div>
       </div>
     </section>
