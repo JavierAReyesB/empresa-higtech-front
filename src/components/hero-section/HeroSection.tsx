@@ -119,7 +119,7 @@ export default function HeroSection({
   return (
     <div className="relative h-[100vh] md:h-[100vh] max-h-[800px] md:max-h-none w-full flex items-center justify-center">
       {/* Background Video (Mobile only) */}
-      {mounted ? (
+      {mounted && videoSrc ? (
         <video
           autoPlay
           loop
@@ -132,7 +132,7 @@ export default function HeroSection({
         </video>
       ) : null}
       {/* Background Image (Desktop only) */}
-      {mounted ? (
+      {mounted && profileImage2 ? (
         <img
           src={profileImage2}
           alt={name}
@@ -309,7 +309,7 @@ export default function HeroSection({
       {/* Bottom gradient for smooth transition */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background via-background/90 to-transparent pointer-events-none z-[3]" />
       {/* Video Modal */}
-      {mounted && (
+      {mounted && videoSrc && (
         <VideoPlayer
           isOpen={showVideoModal}
           onClose={() => setShowVideoModal(false)}

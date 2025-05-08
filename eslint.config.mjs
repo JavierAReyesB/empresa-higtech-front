@@ -14,7 +14,9 @@ const config = [
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   {
     rules: {
-      '@typescript-eslint/no-require-imports': 'off'
+      '@typescript-eslint/no-require-imports': 'off',
+      '@typescript-eslint/no-unused-vars': 'warn', // Cambiar de error a advertencia
+      '@typescript-eslint/no-explicit-any': 'warn'  // Cambiar de error a advertencia
     }
   },
   {

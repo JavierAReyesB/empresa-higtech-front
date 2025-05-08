@@ -5,8 +5,12 @@ import javierProfile from "./profiles/javier";
 export type ProfileType = "OMAR" | "JAVIER";
 
 // Helper function to get text content for a specific locale
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function getTextWithLocale(profile: any, section: string, isSpanish: boolean) {
+// Define un tipo más específico para los perfiles
+export function getTextWithLocale(
+  profile: Record<string, any>,
+  section: string, 
+  isSpanish: boolean
+) {
   if (isSpanish && profile[section] && profile[section].es) {
     return profile[section].es;
   }

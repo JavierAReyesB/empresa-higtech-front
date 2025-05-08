@@ -51,6 +51,11 @@ export default function VideoPlayer({ isOpen, onClose, videoSrc }: VideoPlayerPr
     setIsLoading(false);
   };
 
+  // Don't render anything if no videoSrc
+  if (!videoSrc) {
+    return null;
+  }
+
   return (
     <AnimatePresence>
       {isOpen && (

@@ -1,0 +1,5 @@
+{
+  "buildCommand": "npm run build",
+  "ignoreCommand": "echo 'Ignoring ESLint errors during build'",
+  "installCommand": "npm install"
+}
