@@ -25,7 +25,7 @@ const sectionVariants = {
 export default function Home() {
   // These variables are unused in this component but needed for proper page structure
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const pathname = usePathname();
+  // const pathname = usePathname();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   //  const isSpanish = pathname?.includes("/es");
 
