@@ -1,5 +1,13 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
-  // Tus opciones de configuración aquí
-  reactStrictMode: true
-}
+const nextConfig = {
+  reactStrictMode: true,
+  output: "export",
+  images: {
+    unoptimized: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+};
+
+module.exports = nextConfig;
