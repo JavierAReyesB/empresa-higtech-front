@@ -37,7 +37,7 @@ export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
-  
+
   // Get profile data
   const { data: profile, profileType } = useProfile();
 
@@ -145,21 +145,25 @@ export default function Header() {
               >
                 <DropdownMenuItem
                   onClick={() => {
-                    window.localStorage.setItem('profile-config', 'OMAR');
+                    window.localStorage.setItem("profile-config", "OMAR");
                     window.location.reload();
                   }}
-                  className={`hover:bg-white/10 cursor-pointer ${profileType === 'OMAR' ? 'bg-white/10' : ''}`}
+                  className={`hover:bg-white/10 cursor-pointer ${
+                    profileType === "OMAR" ? "bg-white/10" : ""
+                  }`}
                 >
-                  Omar Profile
+                  Wakanda Profile
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => {
-                    window.localStorage.setItem('profile-config', 'JAVIER');
+                    window.localStorage.setItem("profile-config", "JAVIER");
                     window.location.reload();
                   }}
-                  className={`hover:bg-white/10 cursor-pointer ${profileType === 'JAVIER' ? 'bg-white/10' : ''}`}
+                  className={`hover:bg-white/10 cursor-pointer ${
+                    profileType === "JAVIER" ? "bg-white/10" : ""
+                  }`}
                 >
-                  Javier Profile
+                  Bokuto Profile
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
