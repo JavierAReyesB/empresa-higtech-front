@@ -24,16 +24,16 @@ const omarProfile = {
       description:
         "Experto en desarrollo web e integración de IA con más de 10 años de experiencia construyendo aplicaciones de alto rendimiento.",
       ctaButton: "Contáctame",
-    }
+    },
   },
 
   // About Section - English & Spanish
   about: {
     title: "About Me",
     description:
-      "With extensive experience in software development, I specialize in creating efficient, scalable solutions. My expertise spans web development, cloud infrastructure, and AI integration.",
+      "Soy Project Manager con más de 10 años de experiencia en gestión y liderazgo de proyectos tecnológicos, especialmente en el desarrollo e implementación de soluciones ERP, aplicaciones móviles y plataformas web. A lo largo de mi trayectoria, he colaborado con sectores diversos como tecnología, logística, retail y servicios, facilitando la transformación digital mediante metodologías ágiles como Shape Up y Lean Startup. Poseo certificaciones reconocidas internacionalmente, incluyendo PMP y Scrum Master, que avalan mi capacidad para liderar equipos multidisciplinarios, optimizar procesos y entregar resultados de alto impacto",
     history:
-      "My journey in technology began over a decade ago, and I've since worked with companies of all sizes to deliver innovative digital solutions that solve real-world problems.",
+      "Destaco por mi enfoque analítico y una comunicación clara, habilidades fundamentales que aplico diariamente para anticipar riesgos, resolver problemas eficazmente y garantizar la máxima productividad en mis equipos. La empatía, adaptabilidad y proactividad definen mi estilo de gestión, creando entornos colaborativos que impulsan la innovación constante. Mi objetivo es aportar valor tangible, asegurando la satisfacción tanto del cliente como del equipo interno.",
     skills: [
       "Full-Stack Development",
       "Cloud Architecture",
@@ -45,9 +45,9 @@ const omarProfile = {
     es: {
       title: "Sobre Mí",
       description:
-        "Con amplia experiencia en desarrollo de software, me especializo en crear soluciones eficientes y escalables. Mi experiencia abarca desarrollo web, infraestructura en la nube e integración de IA.",
+        "Project Manager con más de 10 años de experiencia en gestión y liderazgo de proyectos tecnológicos, especialmente en el desarrollo e implementación de soluciones ERP, aplicaciones móviles y plataformas web. A lo largo de mi trayectoria, he colaborado con sectores diversos como tecnología, logística, retail y servicios, facilitando la transformación digital mediante metodologías ágiles como Shape Up y Lean Startup. Poseo certificaciones reconocidas internacionalmente, incluyendo PMP y Scrum Master, que avalan mi capacidad para liderar equipos multidisciplinarios, optimizar procesos y entregar resultados de alto impacto",
       history:
-        "Mi trayectoria en tecnología comenzó hace más de una década, y desde entonces he trabajado con empresas de todos los tamaños para ofrecer soluciones digitales innovadoras que resuelven problemas del mundo real.",
+        "Destaco por mi enfoque analítico y una comunicación clara, habilidades fundamentales que aplico diariamente para anticipar riesgos, resolver problemas eficazmente y garantizar la máxima productividad en mis equipos. La empatía, adaptabilidad y proactividad definen mi estilo de gestión, creando entornos colaborativos que impulsan la innovación constante. Mi objetivo es aportar valor tangible, asegurando la satisfacción tanto del cliente como del equipo interno.",
       skills: [
         "Desarrollo Full-Stack",
         "Arquitectura en la Nube",
@@ -55,7 +55,7 @@ const omarProfile = {
         "Optimización de Rendimiento",
         "Liderazgo Técnico",
       ],
-    }
+    },
   },
 
   // Services Section - English & Spanish
@@ -82,7 +82,8 @@ const omarProfile = {
     // Spanish versions
     es: {
       title: "Mis Servicios",
-      description: "Soluciones profesionales adaptadas a tus necesidades específicas",
+      description:
+        "Soluciones profesionales adaptadas a tus necesidades específicas",
       items: [
         {
           title: "Desarrollo Web a Medida",
@@ -100,7 +101,7 @@ const omarProfile = {
             "Asesoramiento experto en estrategia tecnológica, arquitectura e implementación.",
         },
       ],
-    }
+    },
   },
 
   // Testimonials Section
@@ -135,7 +136,7 @@ const omarProfile = {
           text: "Trabajar con Omar fue un placer. Entendió perfectamente nuestras necesidades e implementó soluciones que han mejorado enormemente nuestros procesos de negocio.",
         },
       ],
-    }
+    },
   },
 
   // Footer
@@ -151,7 +152,7 @@ const omarProfile = {
     es: {
       copyright: "© 2024 Omar Somoza. Todos los derechos reservados.",
       contactEmail: "contact@omarsomoza.com",
-    }
+    },
   },
 };
 

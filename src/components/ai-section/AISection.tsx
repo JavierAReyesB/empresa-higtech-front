@@ -73,8 +73,8 @@ const getFeatures = (isSpanish: boolean) => [
 // Case studies with translations
 const getCaseStudies = (isSpanish: boolean) => [
   {
-    title: isSpanish 
-      ? "Asistente Virtual para Atención al Cliente" 
+    title: isSpanish
+      ? "Asistente Virtual para Atención al Cliente"
       : "Virtual Assistant for Customer Service",
     description: isSpanish
       ? "Implementamos un agente de IA capaz de resolver el 85% de las consultas de los clientes sin intervención humana, reduciendo tiempos de espera y mejorando la satisfacción."
@@ -93,20 +93,20 @@ const getCaseStudies = (isSpanish: boolean) => [
     category: isSpanish ? "Retail" : "Retail",
   },
   {
-    title: isSpanish 
-      ? "Automatización de Procesos Financieros" 
+    title: isSpanish
+      ? "Automatización de Procesos Financieros"
       : "Financial Process Automation",
     description: isSpanish
       ? "Desarrollamos un sistema que automatiza la conciliación bancaria, procesamiento de facturas y detección de fraudes, reduciendo errores y acelerando ciclos operativos."
       : "We developed a system that automates bank reconciliation, invoice processing, and fraud detection, reducing errors and accelerating operational cycles.",
-    stats: isSpanish 
-      ? ["99.8% precisión", "70% menos tiempo", "ROI en 6 meses"] 
+    stats: isSpanish
+      ? ["99.8% precisión", "70% menos tiempo", "ROI en 6 meses"]
       : ["99.8% accuracy", "70% less time", "ROI in 6 months"],
     category: isSpanish ? "Finanzas" : "Finance",
   },
   {
-    title: isSpanish 
-      ? "Sistema Predictivo de Mantenimiento" 
+    title: isSpanish
+      ? "Sistema Predictivo de Mantenimiento"
       : "Predictive Maintenance System",
     description: isSpanish
       ? "Creamos una solución de IA que monitorea equipos industriales y predice fallos antes de que ocurran, minimizando tiempo de inactividad y optimizando recursos de mantenimiento."
@@ -129,8 +129,8 @@ const getCaseStudies = (isSpanish: boolean) => [
 export default function AISection() {
   const [activeTab, setActiveTab] = useState("features");
   const pathname = usePathname();
-  const isSpanish = pathname?.includes("/es");
-  
+  const isSpanish = pathname?.includes("/es") ?? false;
+
   // Get translated data
   const features = getFeatures(isSpanish);
   const caseStudies = getCaseStudies(isSpanish);
@@ -157,7 +157,9 @@ export default function AISection() {
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 tracking-tight">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#d9a27c] via-[#b57a5a] to-[#e0b295] dark:from-[#c88c6a] dark:via-[#a96c4f] dark:to-[#dba580]">
-                {isSpanish ? "IA, Agentes y Automatización" : "AI, Agents and Automation"}
+                {isSpanish
+                  ? "IA, Agentes y Automatización"
+                  : "AI, Agents and Automation"}
               </span>
             </h2>
             <p className="text-lg text-foreground/70 max-w-3xl mx-auto leading-relaxed">
@@ -276,8 +278,8 @@ export default function AISection() {
         >
           <div className="p-8 md:p-12 rounded-xl bg-gradient-to-r from-indigo-500/10 via-violet-500/10 to-rose-500/10 border border-foreground/10">
             <h3 className="text-2xl md:text-3xl font-bold mb-4">
-              {isSpanish 
-                ? "Transforme su negocio con IA avanzada" 
+              {isSpanish
+                ? "Transforme su negocio con IA avanzada"
                 : "Transform your business with advanced AI"}
             </h3>
             <p className="text-foreground/70 max-w-2xl mx-auto mb-8">
@@ -286,8 +288,8 @@ export default function AISection() {
                 : "Discover how our artificial intelligence and automation solutions can propel your business into the future."}
             </p>
             <Button size="lg" className="bg-primary hover:bg-primary/90">
-              {isSpanish 
-                ? "Solicitar consulta gratuita" 
+              {isSpanish
+                ? "Solicitar consulta gratuita"
                 : "Request free consultation"}
             </Button>
           </div>

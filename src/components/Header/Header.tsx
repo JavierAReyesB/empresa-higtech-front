@@ -163,7 +163,7 @@ export default function Header() {
                     profileType === "JAVIER" ? "bg-white/10" : ""
                   }`}
                 >
-                  Bokuto Profile
+                  Talokan Profile
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -233,11 +233,12 @@ export default function Header() {
                           ? "bg-white/10"
                           : "hover:bg-white/5"
                       } geo-card`}
-                      onClick={() =>
-                        document
-                          .querySelector("[data-radix-collection-item]")
-                          ?.click()
-                      }
+                      onClick={() => {
+                        const element = document.querySelector(
+                          "[data-radix-collection-item]"
+                        ) as HTMLElement | null;
+                        element?.click();
+                      }}
                     >
                       {item.name}
                     </Link>
