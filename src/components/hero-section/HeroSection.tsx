@@ -12,12 +12,12 @@ import { Pacifico } from "next/font/google";
 import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { 
-  Linkedin, 
-  Instagram, 
+import {
+  Linkedin,
+  Instagram,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  ExternalLink, 
-  PlayCircle 
+  ExternalLink,
+  PlayCircle,
 } from "lucide-react";
 import VideoPlayer from "../VideoPlayer";
 import { cn } from "@/lib/utils";
@@ -44,16 +44,17 @@ export default function HeroSection({
   title1?: string;
   title2?: string;
 }) {
-  const { theme, 
+  const {
+    theme,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    resolvedTheme 
+    resolvedTheme,
   } = useTheme();
   const [showBadge, setShowBadge] = useState(false);
   const [showVideoModal, setShowVideoModal] = useState(false);
   const pathname = usePathname();
   const isSpanish = pathname?.includes("/es");
   const [mounted, setMounted] = useState(false);
-  
+
   // Get profile data from resources
   const { data: profile } = useProfile();
 
@@ -75,7 +76,7 @@ export default function HeroSection({
   useEffect(() => {
     setMounted(true);
   }, []);
-  
+
   // Set profile images after hydration to prevent mismatch
   useEffect(() => {
     if (mounted) {
@@ -106,9 +107,10 @@ export default function HeroSection({
   // Get text content from profile resources
   const name = profile.name;
   // Use language-specific content when available
-  const heroData = isSpanish && profile.hero.es ? profile.hero.es : profile.hero;
+  const heroData =
+    isSpanish && profile.hero.es ? profile.hero.es : profile.hero;
   const displayBadge = badge || name;
-  
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const displayTitle1 = title1 || "Soluciones";
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

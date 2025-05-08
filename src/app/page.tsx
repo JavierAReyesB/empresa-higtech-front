@@ -27,11 +27,11 @@ export default function Home() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const pathname = usePathname();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const isSpanish = pathname?.includes("/es");
-  
+  //  const isSpanish = pathname?.includes("/es");
+
   // Get profile data - used indirectly by child components
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { data: profile } = useProfile();
+  //const { data: profile } = useProfile();
 
   return (
     <main className="flex flex-col min-h-screen overflow-visible bg-transparent text-white">
