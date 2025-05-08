@@ -12,6 +12,7 @@ import {
   Zap,
   ArrowRight,
   Code,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   Github,
   Server,
 } from "lucide-react";

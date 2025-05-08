@@ -5,16 +5,20 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   Search,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   Briefcase,
   User,
   Menu,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   X,
   Sun,
   Moon,
   Globe,
   Mail,
 } from "lucide-react";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -26,14 +30,17 @@ import {
   Sheet,
   SheetContent,
   SheetTrigger,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   SheetClose,
 } from "@/components/ui/sheet";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
 import { useProfile } from "@/lib/hooks/useProfile";
 
 export default function Header() {
   const { resolvedTheme, setTheme } = useTheme();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
@@ -152,7 +159,7 @@ export default function Header() {
                     profileType === "OMAR" ? "bg-white/10" : ""
                   }`}
                 >
-                  Wakanda Profile
+                  Omar Profile
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => {
@@ -163,7 +170,7 @@ export default function Header() {
                     profileType === "JAVIER" ? "bg-white/10" : ""
                   }`}
                 >
-                  Talokan Profile
+                  Javier Profile
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

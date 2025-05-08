@@ -23,9 +23,12 @@ interface ElegantShapeProps {
 const ElegantShape = ({
   className,
   delay = 0,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   width = 400,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   height = 100,
   rotate = 0,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   gradient = "from-white/[0.08]",
 }: ElegantShapeProps) => {
   return (

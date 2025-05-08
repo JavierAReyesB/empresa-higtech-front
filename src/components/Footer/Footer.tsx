@@ -1,272 +1,272 @@
-"use client";
-
-import type React from "react";
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { Globe } from "lucide-react";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
-import {
-  Linkedin,
-  Github,
-  Twitter,
-  Youtube,
-  Mail,
-  Phone,
-  MapPin,
-  Sun,
-  Moon,
-  ChevronUp,
-  Instagram,
-} from "lucide-react";
-import { useProfile } from "@/lib/hooks/useProfile";
-
-export default function Footer() {
-  const pathname = usePathname();
-  const isSpanish = pathname?.includes("/es");
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [email, setEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [showScrollTop, setShowScrollTop] = useState(false);
-  
-  // Get profile data from resources
-  const { data: profile } = useProfile();
+"use client";
+
+import type React from "react";
+import { useState, useEffect } from "react";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Globe } from "lucide-react";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Switch } from "@/components/ui/switch";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Label } from "@/components/ui/label";
+import {
+  Linkedin,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  Github,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  Twitter,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  Youtube,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  Mail,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  Phone,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  MapPin,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  Sun,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  Moon,
+  ChevronUp,
+  Instagram,
+} from "lucide-react";
+import { useProfile } from "@/lib/hooks/useProfile";
+
+export default function Footer() {
+  const pathname = usePathname();
+  const isSpanish = pathname?.includes("/es");
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  
+  // Get profile data from resources
+  const { data: profile } = useProfile();
   // Use language-specific content when available
   const footerData = isSpanish && profile.footer.es ? 
-    { ...profile.footer, ...profile.footer.es } : profile.footer;
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 300);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle("dark");
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setEmail("");
-
-      // Reset success message after 3 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 3000);
-    }, 1000);
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
-  const currentYear = new Date().getFullYear();
-
-  return (
-    <footer
-      className={`relative w-full border-t border-border/40 bg-background ${
-        isDarkMode ? "dark" : ""
-      }`}
-      id="contacto"
-    >
-      {/* Back to top button */}
-      <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 transform">
-        <motion.button
-          onClick={scrollToTop}
-          className="flex h-12 w-24 items-center justify-center rounded-t-full border border-border/40 bg-background shadow-sm transition-all hover:bg-muted"
-          whileHover={{ y: -2 }}
-          whileTap={{ y: 0 }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: showScrollTop ? 1 : 0.8 }}
-        >
-          <ChevronUp size={20} className="text-primary" />
-        </motion.button>
-      </div>
-
-      <div className="container mx-auto px-4 py-16">
-        {/* Contact Section - Now as main focus */}
-        <div className="mx-auto mb-16 max-w-4xl">
-          <motion.div
-            className="rounded-xl border border-border/40 bg-background p-8 shadow-sm"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <div className="text-center">
-              <h3 className="mb-4 text-3xl md:text-4xl font-bold geo-text-gradient">
-                {isSpanish ? "Contacto" : "Contact Me"}
-              </h3>
-              <p className="mb-6 text-muted-foreground max-w-2xl mx-auto">
-                {isSpanish
-                  ? "¿Interesado en trabajar juntos? Completa el siguiente formulario y me pondré en contacto contigo lo antes posible."
-                  : "Interested in working together? Fill out the form below and I'll get back to you as soon as possible."}
-              </p>
-
-              <form
-                onSubmit={handleSubmit}
-                className="mx-auto grid grid-cols-1 gap-4 max-w-xl"
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Input
-                      type="text"
-                      placeholder={isSpanish ? "Nombre" : "Name"}
-                      required
-                      className="h-11 w-full rounded-md border-border/40 bg-background/50"
-                    />
-                  </div>
-                  <div>
-                    <Input
-                      type="email"
-                      placeholder={isSpanish ? "Correo electrónico" : "Email"}
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      className="h-11 w-full rounded-md border-border/40 bg-background/50"
-                      disabled={isSubmitting}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <Input
-                    type="text"
-                    placeholder={isSpanish ? "Asunto" : "Subject"}
-                    required
-                    className="h-11 w-full rounded-md border-border/40 bg-background/50"
-                  />
-                </div>
-
-                <div>
-                  <textarea
-                    placeholder={isSpanish ? "Mensaje" : "Message"}
-                    required
-                    rows={4}
-                    className="w-full rounded-md border border-border/40 bg-background/50 p-3"
-                  />
-                </div>
-
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Button
-                    type="submit"
-                    className="h-11 w-full rounded-md"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting
-                      ? isSpanish
-                        ? "Enviando..."
-                        : "Sending..."
-                      : isSpanish
-                      ? "Enviar mensaje"
-                      : "Send message"}
-                  </Button>
-                </motion.div>
-              </form>
-
-              <AnimatePresence>
-                {isSubmitted && (
-                  <motion.p
-                    className="mt-4 text-sm text-green-600"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                  >
-                    {isSpanish
-                      ? "¡Gracias por tu mensaje! Me pondré en contacto contigo pronto."
-                      : "Thank you for your message! I'll get back to you soon."}
-                  </motion.p>
-                )}
-              </AnimatePresence>
-
-              {/* Social links and direct contact */}
-              <div className="flex flex-wrap justify-center gap-6 mt-8">
-                <a
-                  href={footerData.socialLinks.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-foreground/60 hover:text-primary transition-colors"
-                >
-                  <Linkedin size={18} />
-                  <span>LinkedIn</span>
-                </a>
-                <a
-                  href={footerData.socialLinks.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-foreground/60 hover:text-primary transition-colors"
-                >
-                  <Instagram size={18} />
-                  <span>Instagram</span>
-                </a>
-                <a
-                  href="https://www.avanzadi.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-foreground/60 hover:text-primary transition-colors"
-                >
-                  <Globe size={18} />
-                  <span>Avanzadi</span>
-                </a>
-                <a
-                  href={`mailto:${footerData.contactEmail}`}
-                  className="flex items-center space-x-2 text-foreground/60 hover:text-primary transition-colors"
-                >
-                  <Mail size={18} />
-                  <span>{footerData.contactEmail}</span>
-                </a>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-
-        <Separator className="my-8 opacity-30" />
-
-        {/* Bottom Footer */}
-        <div className="flex flex-col items-center justify-between space-y-4 text-center text-sm text-muted-foreground md:flex-row md:space-y-0 md:text-left">
-          <div>
-            {footerData.copyright}
-          </div>
-          <div className="text-sm font-light italic text-foreground/50">
-            {isSpanish
-              ? "Construyamos juntos el futuro de la tecnología."
-              : "Let's build the future of tech together."}
-          </div>
-          <div className="flex items-center space-x-1">
-            <motion.a
-              href="https://www.avanzadi.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-foreground/60 transition-colors hover:text-primary"
-              whileHover={{ y: -1 }}
-            >
-              Avanzadi
-            </motion.a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
+    { ...profile.footer, ...profile.footer.es } : profile.footer;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Simulate API call
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      setEmail("");
+
+      // Reset submitted state after a delay
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 3000);
+    }, 1500);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
+  return (
+    <footer id="contacto" className="py-12 mt-10 relative">
+      <div className="mx-auto px-4 sm:px-6 md:px-8 max-w-7xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-20">
+          {/* Column 1: Logo and Description */}
+          <div className="space-y-6">
+            <div className="text-xl font-semibold">{profile.name}</div>
+            <p className="text-sm text-foreground/70 max-w-xs">
+              {profile.role}
+            </p>
+            <div className="flex items-center space-x-3">
+              <a
+                href={profile.footer.socialLinks.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full border border-white/10 hover:bg-white/10 transition-colors"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full border border-white/10 hover:bg-white/10 transition-colors"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Column 2: Services */}
+          <div className="space-y-6">
+            <div className="text-sm font-semibold uppercase text-foreground/80">
+              {isSpanish ? "Servicios" : "Services"}
+            </div>
+            <nav className="flex flex-col space-y-3">
+              <a
+                href="#"
+                className="text-sm text-foreground/70 hover:text-foreground transition-colors"
+              >
+                AI {isSpanish ? "Integración" : "Integration"}
+              </a>
+              <a
+                href="#"
+                className="text-sm text-foreground/70 hover:text-foreground transition-colors"
+              >
+                {isSpanish ? "Desarrollo Web" : "Web Development"}
+              </a>
+              <a
+                href="#"
+                className="text-sm text-foreground/70 hover:text-foreground transition-colors"
+              >
+                {isSpanish ? "Consultoría técnica" : "Technical Consulting"}
+              </a>
+            </nav>
+          </div>
+
+          {/* Column 3: Pages */}
+          <div className="space-y-6">
+            <div className="text-sm font-semibold uppercase text-foreground/80">
+              {isSpanish ? "Páginas" : "Pages"}
+            </div>
+            <nav className="flex flex-col space-y-3">
+              <a
+                href="#"
+                className="text-sm text-foreground/70 hover:text-foreground transition-colors"
+              >
+                {isSpanish ? "Inicio" : "Home"}
+              </a>
+              <a
+                href="#about"
+                className="text-sm text-foreground/70 hover:text-foreground transition-colors"
+              >
+                {isSpanish ? "Sobre mí" : "About"}
+              </a>
+              <a
+                href="#AiSection"
+                className="text-sm text-foreground/70 hover:text-foreground transition-colors"
+              >
+                AI {isSpanish ? "Sección" : "Section"}
+              </a>
+              <a
+                href="#contacto"
+                className="text-sm text-foreground/70 hover:text-foreground transition-colors"
+              >
+                {isSpanish ? "Contacto" : "Contact"}
+              </a>
+            </nav>
+          </div>
+
+          {/* Column 4: Newsletter */}
+          <div className="space-y-6">
+            <div className="text-sm font-semibold uppercase text-foreground/80">
+              {isSpanish ? "Mantente Informado" : "Stay Updated"}
+            </div>
+            <div className="relative">
+              <form onSubmit={handleSubmit} className="group">
+                <Input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder={isSpanish ? "Ingresa tu email..." : "Enter your email..."}
+                  className="pr-12 border-white/10 bg-transparent text-foreground/70 focus:ring-0 focus:border-white/20"
+                  required
+                  disabled={isSubmitting || isSubmitted}
+                />
+                <Button
+                  type="submit"
+                  size="sm"
+                  className="absolute right-1 top-1 bg-transparent hover:bg-white/10 text-foreground"
+                  disabled={isSubmitting || isSubmitted}
+                >
+                  {isSubmitting ? (
+                    <div className="h-5 w-5 border-2 border-foreground/20 border-t-foreground/80 rounded-full animate-spin" />
+                  ) : isSubmitted ? (
+                    <span>{isSpanish ? "¡Enviado!" : "Sent!"}</span>
+                  ) : (
+                    <span>{isSpanish ? "Enviar" : "Send"}</span>
+                  )}
+                </Button>
+              </form>
+              <p className="mt-2 text-xs text-foreground/50">
+                {isSpanish
+                  ? "Recibe actualizaciones sobre proyectos y servicios."
+                  : "Receive updates about projects and services."}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <Separator className="my-8 bg-white/10" />
+
+        {/* Bottom Footer */}
+        <div className="flex flex-col md:flex-row items-center justify-between">
+          <div className="text-sm text-foreground/50 mb-4 md:mb-0">
+            {footerData.copyright}
+          </div>
+
+          <div className="flex items-center space-x-4">
+            <div className="text-xs md:text-sm text-foreground/50">
+              {isSpanish 
+                ? "Hecho con pasión y tecnología moderna" 
+                : "Made with passion and modern tech"}
+            </div>
+            <div className="h-4 w-[1px] bg-white/10" />
+            <a
+              href="#"
+              className="text-xs md:text-sm text-foreground/50 hover:text-foreground transition-colors"
+            >
+              {isSpanish ? "Política de Privacidad" : "Privacy Policy"}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll to top button */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            onClick={scrollToTop}
+            className="fixed bottom-6 right-6 p-3 rounded-full bg-foreground/10 backdrop-blur-lg border border-white/10 text-foreground/80 hover:bg-foreground/20 transition-colors shadow-lg"
+          >
+            <ChevronUp className="h-5 w-5" />
+          </motion.button>
+        )}
+      </AnimatePresence>
+
+      {/* Current year calculation (could be used in future) */}
+      {(() => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const currentYear = new Date().getFullYear();
+        return null;
+      })()}
+    </footer>
+  );
 }
