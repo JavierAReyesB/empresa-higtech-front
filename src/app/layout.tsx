@@ -20,12 +20,9 @@ const dancingScript = Dancing_Script({
 
 // Dynamic metadata based on current profile
 export const metadata: Metadata = {
-  title: PROFILE_CONFIG.CURRENT_PROFILE === "OMAR" 
-    ? "Omar Somoza - Senior Software Engineer" 
-    : "Javier Reyes - Project Director & Technical Leader",
-  description: PROFILE_CONFIG.CURRENT_PROFILE === "OMAR"
-    ? "Senior software engineer with expertise in web development and AI integration"
-    : "Project director and technical leader with a passion for transforming business challenges into successful digital solutions.",
+  title: "Javier Reyes - Project Director & Technical Leader",
+  description:
+    "Project director and technical leader with a passion for transforming business challenges into successful digital solutions.",
 };
 
 // Split into client component and server layout
